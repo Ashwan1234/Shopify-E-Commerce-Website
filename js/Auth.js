@@ -153,7 +153,7 @@ const Auth = (() => {
         btnUser.onclick = () => {
           window.location.href = user.role === 'admin'
             ? 'adminpage.html'
-            : 'userpagem.html'; // Routes users to the correct dashboard by role
+            : 'userpage.html'; // Routes users to the correct dashboard by role
         };
       }
       if (btnLogin) btnLogin.classList.add('nav-hidden'); // Hides login button when authenticated
