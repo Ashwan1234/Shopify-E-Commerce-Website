@@ -152,8 +152,8 @@ const Auth = (() => {
         btnUser.textContent = user.name.split(' ')[0]; // Shows only the user's first name in the navbar
         btnUser.onclick = () => {
           window.location.href = user.role === 'admin'
-            ? 'AdminPage.html'
-            : 'UserPage.html'; // Routes users to the correct dashboard by role
+            ? 'adminpage.html'
+            : 'userpage.html'; // Routes users to the correct dashboard by role
         };
       }
       if (btnLogin) btnLogin.classList.add('nav-hidden'); // Hides login button when authenticated
