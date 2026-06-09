@@ -70,7 +70,7 @@ async function handleLogin(e) {
 
     Toast.show(`Welcome back, ${user.name.split(' ')[0]}! ✓`);
     setTimeout(() => {
-      window.location.href = user.role === 'admin' ? 'adminpagem.html' : 'index.html';
+      window.location.href = user.role === 'admin' ? 'adminpage.html' : 'index.html';
     }, 800);
 
   } catch (err) {
@@ -85,6 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Redirect away if already logged in */
   const user = Auth.getSession();
   if (user) {
-    window.location.href = user.role === 'admin' ? 'adminpagem.html' : 'index.html';
+    window.location.href = user.role === 'admin' ? 'adminpage.html' : 'index.html';
   }
 });
