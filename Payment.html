@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout – SHOPIFY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/Main.css"/>
+  <link rel="stylesheet" href="css/NavBar.css"/>
+  <link rel="stylesheet" href="css/Cart.css"/>
+  <link rel="stylesheet" href="css/Payment.css"/>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+       <div class="nav-logo-icon">
+  <img src="./assets/Logo/WEBSITE_Logo.png" alt="Logo">
+</div>
+    <span>SHOP<span class="green">IFY</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-search">
+      <input type="text" id="navSearchInput" placeholder="Search…" autocomplete="off">
+      <button id="navSearchBtn">Search</button>
+    </div>
+    <button class="btn-cart" onclick="Cart.toggle()">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+    <button class="btn-nav-user nav-hidden" id="navUserBtn">User</button>
+    <a href="login.html"><button class="btn-ghost" id="navLoginBtn">Login</button></a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="shop.html">Shop</a>
+</div>
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head"><h3>Your Cart</h3><button class="cart-close" onclick="Cart.close()">×</button></div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty.</p></div>
+  <div class="cart-foot">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">RS0.00</span></div>
+    <div class="cart-discount-row" id="cartDiscountRow"></div>
+    <div class="cart-total-row"><span>Total</span><span id="cartTotal">RS0.00</span></div>
+    <button class="btn-checkout" onclick="Cart.checkout()">Checkout →</button>
+  </div>
+</div>
+<div id="toast"></div>
+
+<div class="page-wrapper">
+<div class="checkout-page">
+
+  <!-- SUCCESS STATE -->
+  <div id="orderSuccess" class="js-hidden">
+    <div class="order-success">
+      <div class="success-icon">✓</div>
+      <h2>Order Placed!</h2>
+      <p>Thank you for shopping at SHOPIFY. Your order has been confirmed and will be processed shortly.</p>
+      <div class="success-actions">
+        <a href="profile.html"><button class="btn-primary">View My Orders →</button></a>
+        <a href="shop.html"><button class="btn-outline">Continue Shopping</button></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT CONTENT -->
+  <div id="checkoutContent">
+
+    <!-- Steps -->
+    <div class="checkout-steps">
+      <div class="step active" id="step1-indicator">
+        <div class="step-num">1</div>
+        <span class="step-label">Delivery</span>
+        <span class="step-connector"></span>
+      </div>
+      <div class="step" id="step2-indicator">
+        <div class="step-num">2</div>
+        <span class="step-label">Payment</span>
+        <span class="step-connector"></span>
+      </div>
+      <div class="step" id="step3-indicator">
+        <div class="step-num">3</div>
+        <span class="step-label">Review</span>
+      </div>
+    </div>
+
+    <div class="checkout-grid">
+
+      <!-- LEFT -->
+      <div class="checkout-left">
+
+        <!-- STEP 1 -->
+        <div class="checkout-panel" id="panel-step1">
+          <div class="checkout-section">
+            <div class="checkout-section-head"><h3>Delivery Information</h3></div>
+            <div class="checkout-section-body">
+              <form id="stepForm1">
+                <div class="form-row">
+                  <div class="form-group"><label for="firstName">First Name</label><input type="text" id="firstName" placeholder="Alex" required/></div>
+                  <div class="form-group"><label for="lastName">Last Name</label><input type="text" id="lastName" placeholder="Martin" required/></div>
+                </div>
+                <div class="form-group"><label for="checkoutEmail">Email Address</label><input type="email" id="checkoutEmail" placeholder="you@example.com" required/></div>
+                <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="+230 5000 0000" required/></div>
+                <div class="form-group"><label for="address">Street Address</label><input type="text" id="address" placeholder="12 Royal Road" required/></div>
+                <div class="form-row">
+                  <div class="form-group"><label for="city">City</label><input type="text" id="city" placeholder="Port Louis" required/></div>
+                  <div class="form-group"><label for="postal">Postal Code</label><input type="text" id="postal" placeholder="00000"/></div>
+                </div>
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <select id="country">
+                    <option value="MU">Mauritius</option>
+                    <option value="RE">Réunion</option>
+                    <option value="MG">Madagascar</option>
+                    <option value="OTHER">Other</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="checkout-actions checkout-actions-right">
+            <button class="btn-primary" onclick="nextStep()">Continue to Payment →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="checkout-panel js-hidden" id="panel-step2">
+          <div class="checkout-section">
+            <div class="checkout-section-head"><h3>Payment Method</h3></div>
+            <div class="checkout-section-body">
+              <div class="payment-methods">
+                <button class="pay-method active" data-method="card"   onclick="selectPayMethod(this)">💳 Credit / Debit</button>
+                <button class="pay-method"        data-method="paypal" onclick="selectPayMethod(this)">🅿 PayPal</button>
+                <button class="pay-method"        data-method="cash"   onclick="selectPayMethod(this)">💵 Cash on Delivery</button>
+              </div>
+              <div class="card-preview" id="cardPreview">
+                <div class="card-chip"></div>
+                <div class="card-number-display" id="cardNumberDisplay">•••• •••• •••• ••••</div>
+                <div class="card-meta">
+                  <div class="card-meta-item">Card Holder<div class="card-meta-value" id="cardHolderDisplay">CARD HOLDER</div></div>
+                  <div class="card-meta-item">Expires<div class="card-meta-value" id="cardExpiryDisplay">MM/YY</div></div>
+                </div>
+              </div>
+              <div id="cardFormFields">
+                <form id="stepForm2">
+                  <div class="form-group"><label for="cardNumber">Card Number</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)" required/></div>
+                  <div class="form-group"><label for="cardHolder">Card Holder Name</label><input type="text" id="cardHolder" placeholder="ALEX MARTIN" oninput="document.getElementById('cardHolderDisplay').textContent=this.value||'CARD HOLDER'" required/></div>
+                  <div class="form-row">
+                    <div class="form-group"><label for="cardExpiry">Expiry Date</label><input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)" required/></div>
+                    <div class="form-group"><label for="cardCVV">CVV</label><input type="text" id="cardCVV" placeholder="123" maxlength="4" oninput="formatCVV(this)" required/></div>
+                  </div>
+                </form>
+              </div>
+              <div class="alt-pay-message js-hidden" id="altPayMessage">
+                You will be redirected / billed at delivery. No card details needed.
+              </div>
+            </div>
+          </div>
+          <div class="checkout-actions checkout-actions-between">
+            <button class="btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn-primary" onclick="nextStep()">Review Order →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="checkout-panel js-hidden" id="panel-step3">
+          <div class="checkout-section">
+            <div class="checkout-section-head"><h3>Review Your Order</h3></div>
+            <div class="checkout-section-body">
+              <div class="review-grid">
+                <div class="review-block">
+                  <div class="review-block-label">Delivery To</div>
+                  <div class="review-value-bold" id="reviewName"></div>
+                  <div class="review-value-gray" id="reviewAddress"></div>
+                  <div class="review-value-gray" id="reviewEmail"></div>
+                </div>
+                <div class="review-block">
+                  <div class="review-block-label">Payment Method</div>
+                  <div class="review-value-bold" id="reviewMethod"></div>
+                </div>
+              </div>
+              <div class="review-items-label">Items</div>
+              <div id="reviewItemsList"></div>
+              <div class="review-total-row">
+                <span>Total</span>
+                <span id="reviewTotal" class="review-total-amount"></span>
+              </div>
+            </div>
+          </div>
+          <div class="checkout-actions checkout-actions-between">
+            <button class="btn-ghost" onclick="prevStep()">← Back</button>
+            <button class="btn-green" id="placeOrderBtn" onclick="placeOrder()">Place Order ✓</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT — ORDER SUMMARY -->
+      <div class="order-summary">
+        <div class="order-summary-head">Order Summary</div>
+        <div class="order-items" id="orderItemsList"></div>
+        <div class="order-totals">
+          <div class="total-row"><span>Subtotal</span><span id="summarySubtotal">RS0.00</span></div>
+          <div class="total-row"><span>Shipping</span><span>Free</span></div>
+          <div class="total-row discount js-hidden" id="summaryDiscountRow">
+            <span id="summaryDiscountLabel">Loyalty Discount</span>
+            <span id="summaryDiscount">-RS0.00</span>
+          </div>
+          <div class="total-row grand"><span>Total</span><span id="summaryTotal">RS0.00</span></div>
+        </div>
+        <div class="order-summary-foot">
+          <div class="secure-note">🔒 Secured &amp; encrypted checkout</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<script src="js/UI.js"></script>
+<script src="js/Cart.js"></script>
+<script src="js/Auth.js"></script>
+<script src="js/Products.js"></script>
+<script src="js/Payment.js"></script>
+
+</body>
+</html>

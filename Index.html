@@ -1,0 +1,274 @@
+<!DOCTYPE html> <!-- HTML5 document type -->
+<html lang="en">
+<head> <!-- Head section: title, meta tags, fonts, and CSS -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHOPIFY - Your Gaming Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/Main.css"/>
+  <link rel="stylesheet" href="css/NavBar.css"/>
+  <link rel="stylesheet" href="css/Cart.css"/>
+  <link rel="stylesheet" href="css/Products.css"/>
+  <link rel="stylesheet" href="css/Profile.css"/>
+  <link rel="stylesheet" href="css/Home.css"/>
+</head>
+<body> <!-- Page body starts here -->
+
+<!-- ========== NAV ========== -->
+<nav> <!-- Main navigation bar -->
+  <a class="nav-logo" href="index.html"> <!-- Logo and brand name, clicking on the logo sends users back home -->
+    <div class="nav-logo-icon"> <!-- Logo icon wrapper -->
+  <img src="./assets/Logo/WEBSITE_Logo.png" alt="Logo"> <!-- The source of the actual logo image -->
+</div>
+    <span>SHOP<span class="green">IFY</span></span>
+  </a>
+  <ul class="nav-links"> <!-- Main nav links -->
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="shop.html#consoles">Consoles</a></li>
+    <li><a href="shop.html#controllers">Controllers</a></li>
+    <li><a href="shop.html#audio">Audio</a></li>
+  </ul>
+  <div class="nav-right"> <!-- Right side nav actions -->
+    <div class="nav-search"> <!-- Search box in the navbar -->
+      <input type="text" id="navSearchInput" placeholder="Search products…" autocomplete="off">
+      <button id="navSearchBtn">Search</button>
+    </div>
+    <button class="btn-cart" onclick="Cart.toggle()"> <!-- Cart button : opens the cart sidebar -->
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="btn-nav-user nav-hidden" id="navUserBtn">User</button> <!-- User button, hidden at first until JS does its thing -->
+    <a href="login.html"><button class="btn-ghost" id="navLoginBtn">Login</button></a> <!-- Login button -->
+  </div>
+  <button class="nav-hamburger" id="navHamburger">☰</button> <!-- Mobile hamburger menu button -->
+</nav>
+
+<div class="mobile-menu" id="mobileMenu"> <!-- Mobile menu links for smaller screens -->
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="login.html">Login</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div> <!-- Dark overlay behind the cart sidebar -->
+<div class="cart-sidebar" id="cartSidebar"> <!-- Cart sidebar panel -->
+  <div class="cart-head"> <!-- Cart header -->
+    <h3>Your Cart</h3>
+    <button class="cart-close" onclick="Cart.close()">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"> <!-- Cart items will be rendered here -->
+    <p class="cart-empty">Your cart is empty.</p>
+  </div>
+  <div class="cart-foot"> <!-- Cart totals and checkout area -->
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">RS0.00</span></div>
+    <div class="cart-discount-row" id="cartDiscountRow"></div>
+    <div class="cart-total-row"><span>Total</span><span id="cartTotal">RS0.00</span></div>
+    <button class="btn-checkout" onclick="Cart.checkout()">Checkout →</button> <!-- Checkout button — the money moment -->
+  </div>
+</div>
+
+<div id="toast"></div> <!-- Toast container for alerts/messages -->
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="home"> <!-- Hero section -->
+  <div class="hero-bg-accent"></div> <!-- Background accent for the hero -->
+  <div class="hero-glow"></div> <!-- Extra glow effect -->
+  <div class="hero-content"> <!-- Hero text content -->
+    <div class="hero-tag">New Arrivals 2025</div> <!-- Small hero label / promo tag -->
+    <h1>Level Up<br>Your <span class="accent">Game.</span></h1> <!-- Main hero headline with emphasis on "Game" -->
+    <p class="hero-desc"> <!-- Hero description text -->
+      Discover a world of gaming with our wide selection of consoles, controllers,
+      and accessories. Built for gamers who value quality, innovation, and style.
+    </p>
+    <div class="hero-cta"> <!-- Hero action buttons -->
+      <a href="shop.html"><button class="btn-primary">Shop Now →</button></a> <!-- Hero image wrapper -->
+      <button class="btn-outline" id="watchVideoBtn">Watch Video</button>
+    </div>
+  </div>
+  <div class="hero-visual">
+   <img src="./assets/Logo/Hero.jpg" alt="Gaming Console"> <!-- Source of the main hero image -->
+  </div>
+</section>
+
+<!-- ========== FEATURES STRIP ========== -->
+<div class="features-strip"> <!-- Features strip with quick selling points -->
+  <div class="feature-item"><div class="feature-icon">🚚</div><span>Free Shipping Over Rs100</span></div> <!-- Feature: free shipping -->
+  <div class="feature-item"><div class="feature-icon">↩</div><span>30-Day Easy Returns</span></div> <!-- Feature: easy returns -->
+  <div class="feature-item"><div class="feature-icon">🔒</div><span>Secure Payments</span></div> <!-- Feature: secure payments -->
+  <div class="feature-item"><div class="feature-icon">🎮</div><span>Authentic Gear Only</span></div> <!-- Feature: authentic gaming gear -->
+</div>
+
+<!-- ========== CONSOLES ========== -->
+<section class="scroll-section fade-in" id="consoles-preview"> <!-- Consoles preview section -->
+  <div class="scroll-section-header"> <!-- Consoles section header -->
+    <div>
+      <div class="section-label">Browse Category</div>
+      <div class="section-title">Gaming Consoles</div>
+    </div>
+    <div class="scroll-section-header-row"> <!-- Header row with link and arrows -->
+      <a href="shop.html#consoles" class="view-all-link">View All →</a>
+      <div class="scroll-arrows"> <!-- Scroll controls for consoles -->
+        <button class="scroll-arrow" onclick="scrollRow('consolesRow', -1)">←</button>
+        <button class="scroll-arrow" onclick="scrollRow('consolesRow',  1)">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-row" id="consolesRow"></div> <!-- Consoles product cards -->
+</section>
+
+<div class="divider"></div> <!-- Divider between homepage sections -->
+
+<!-- ========== CONTROLLERS ========== -->
+<section class="scroll-section fade-in" id="controllers-preview"> <!-- Controllers preview section -->
+  <div class="scroll-section-header"> <!-- Controllers section header -->
+    <div>
+      <div class="section-label">Browse Category</div>
+      <div class="section-title">Joysticks &amp; Decks</div>
+    </div>
+    <div class="scroll-section-header-row"> <!-- Header row with link and arrows -->
+      <a href="shop.html#controllers" class="view-all-link">View All →</a>
+      <div class="scroll-arrows"> <!-- Scroll controls for controllers -->
+        <button class="scroll-arrow" onclick="scrollRow('controllersRow', -1)">←</button>
+        <button class="scroll-arrow" onclick="scrollRow('controllersRow',  1)">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-row" id="controllersRow"></div> <!-- Controllers product cards -->
+</section>
+
+<div class="divider"></div> <!-- Another divider -->
+
+<!-- ========== AUDIO ========== -->
+<section class="scroll-section fade-in" id="audio-preview"> <!-- Audio accessories preview section -->
+  <div class="scroll-section-header"> <!-- Audio section header -->
+    <div>
+      <div class="section-label">Browse Category</div>
+      <div class="section-title">Audio Accessories</div>
+    </div>
+    <div class="scroll-section-header-row"> <!-- Header row with link and arrows -->
+      <a href="shop.html#audio" class="view-all-link">View All →</a>
+      <div class="scroll-arrows"> <!-- Scroll controls for audio products -->
+        <button class="scroll-arrow" onclick="scrollRow('audioRow', -1)">←</button>
+        <button class="scroll-arrow" onclick="scrollRow('audioRow',  1)">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-row" id="audioRow"></div> <!-- Audio product cards get injected here -->
+</section>
+
+<!-- ========== PROMO BANNER ========== -->
+<section class="promo-section fade-in"> <!-- Promo banner section -->
+  <div class="promo-banner"> <!-- Promo banner content wrapper -->
+    <div class="promo-text"> <!-- Promo text block -->
+      <h2>Loyalty Rewards.<br><span>Up to 10% Off</span> Your Next Order.</h2>
+      <p>After your first purchase, enjoy 5% off — and 10% off on your third order and beyond. Automatically applied at checkout.</p>
+      <a href="shop.html"><button class="btn-primary">Start Shopping →</button></a>
+    </div>
+    <div class="promo-img-placeholder"> <!-- Promo image wrapper -->
+       <img src="./assets/Consoles/Nintendo_Switch.png" alt="Gaming Promotion"> <!-- Promo image -->
+    </div>
+  </div>
+</section>
+
+<!-- ========== VIDEO ========== -->
+<section class="video-section fade-in" id="video-section"> <!-- Video section -->
+  <div class="section-label">Featured</div>
+  <div class="section-title">See It In Action</div>
+  <p class="section-sub">From everyday essentials to must-have gaming gear — products designed to elevate every play session.</p> <!-- Video section description -->
+  <div class="video-frame"> <!-- Video frame wrapper -->
+    <iframe src="https://www.youtube.com/embed/Mqb2a1pZVko?si=TcHsBbue16w04Zrh" 
+      title="Shopify Gaming Store Video" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about-strip fade-in"> <!-- About us section -->
+  <div class="about-grid"> <!-- About section grid layout -->
+    <div class="about-body"> <!-- About text content -->
+      <div class="section-label">About Us</div>
+      <div class="section-title">Shopify,<br>Port Louis</div>
+      <p class="about-text"> <!-- Main about paragraph -->
+        Discover a world of gaming with our wide selection of consoles, controllers, and accessories.
+        Our store is built for gamers who value quality, innovation, and style. From everyday essentials
+        to must-have gaming gear, we offer products designed to elevate every play session.
+      </p>
+      <p class="about-text-last"> <!-- Closing about paragraph -->
+        Founded by Mr. Alex, Shopify has grown from a local Port Louis retailer into a trusted
+        destination for gamers across Mauritius and beyond.
+      </p>
+      <a href="shop.html"><button class="btn-primary">Browse the Store →</button></a>
+    </div>
+    <div class="about-img-placeholder"> <!-- About image wrapper -->
+      <img src="./assets/Logo/Location.PNG" alt="XYZ Master Store"> <!-- Store/location image -->
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer> <!-- Footer starts here -->
+  <div class="footer-top"> <!-- Top part of the footer -->
+    <div class="footer-brand"> <!-- Footer brand/info block -->
+      <div class="footer-brand-logo"> <!-- Footer links for each as mentioned in line of code -->
+        <div class="footer-logo-icon">S</div>
+        <div class="footer-logo-text">SHOP<span>IFY</span></div>
+      </div>
+      <p>Your one-stop destination for gaming consoles, accessories, and audio gear. Built for gamers, by gamers.</p>
+      <div class="footer-address">Shopify · Port Louis, Mauritius</div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="shop.html#consoles">Consoles</a></li>
+        <li><a href="shop.html#controllers">Controllers</a></li>
+        <li><a href="shop.html#audio">Audio</a></li>
+        <li><a href="shop.html">New Arrivals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Account</h4>
+      <ul>
+        <li><a href="login.html">Sign In</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="profile.html">My Profile</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li>FAQ</li>
+        <li>Shipping Policy</li>
+        <li>Returns</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-video">
+    <h4>Featured Video</h4>
+    <div class="footer-video-frame">
+      <iframe src="https://www.youtube.com/embed/Mqb2a1pZVko?si=TcHsBbue16w04Zrh"
+        title="Shopify Footer Video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 SHOPIFY. All rights reserved.</p>
+    <div class="footer-payments">
+      <span class="payment-badge">VISA</span>
+      <span class="payment-badge">Mastercard</span>
+      <span class="payment-badge">PayPal</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="js/UI.js"></script> <!-- UI interactions script -->
+<script src="js/Cart.js"></script> <!-- Cart functionality script -->
+<script src="js/Auth.js"></script> <!-- Authentication script -->
+<script src="js/Products.js"></script> <!-- Product rendering script -->
+<script src="js/Index.js"></script> <!-- Homepage-specific script -->
+
+</body> <!-- End of page body -->
+</html> <!-- End of HTML document -->

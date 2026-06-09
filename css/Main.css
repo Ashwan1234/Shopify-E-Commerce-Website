@@ -1,0 +1,314 @@
+/* =============================================
+   SHOPIFY – Global Stylesheet
+   Shared across all pages
+   ============================================= */
+
+/* ----- RESET & BASE ----- */
+*, *::before, *::after {
+  box-sizing: border-box; /* Makes width and height include padding and border */
+  margin: 0; /* Removes default browser margin */
+  padding: 0; /* Removes default browser padding */
+}
+
+:root {
+  --blue:       #185bd1; 
+  --blue-hover: #1a6aef; 
+  --green:      #4bcc3e; 
+  --white:      #ffffff; 
+  --dark:       #0d0d0d; 
+  --dark-2:     #181818; 
+  --dark-3:     #232323; 
+  --dark-4:     #2c2c2c; 
+  --gray:       #b0b0b0; 
+  --gray-dim:   #666666; 
+  --gray-light: #e8e8e8; 
+  --red:        #e03e3e;
+  --font:       'Montserrat', sans-serif; /* Main site font */
+  --nav-h:      68px; /* Shared navbar height */
+  --radius:     4px; /* Default border radius */
+  --radius-md:  6px; /* Slightly larger border radius */
+}
+
+html { scroll-behavior: smooth; } /* Smooth scrolling for anchor links */
+
+body {
+  font-family: var(--font); /* Applies the main font site-wide */
+  background: var(--dark); /* Global page background */
+  color: var(--white); /* Default text color */
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  min-height: 100vh; /* Makes body fill full viewport height */
+}
+
+img {
+  display: block; /* Removes inline image spacing issues */
+  max-width: 100%; /* Prevents images from overflowing containers */
+  object-fit: cover; /* Keeps images nicely cropped */
+}
+
+a {
+  text-decoration: none; /* Removes default underline */
+  color: inherit; /* Makes links inherit surrounding text color */
+}
+
+ul { list-style: none; } /* Removes default bullet points */
+
+/* ----- TYPOGRAPHY ----- */
+h1, h2, h3, h4, h5 {
+  font-weight: 800; /* Strong heading emphasis */
+  letter-spacing: -0.5px; /* Slightly tighter heading look */
+  line-height: 1.1; /* Compact heading spacing */
+}
+
+/* ----- BUTTONS ----- */
+.btn-primary {
+  background: var(--blue); /* Main primary button color */
+  color: #fff; /* White button text */
+  border: none; /* Removes default button border */
+  border-radius: var(--radius); /* Rounded corners */
+  padding: 13px 30px; /* Main button spacing */
+  font-family: var(--font); /* Uses site font */
+  font-weight: 700; /* Bold button label */
+  font-size: 0.84rem;
+  letter-spacing: 0.4px; /* Small spacing for cleaner button text */
+  cursor: pointer; /* Shows it is clickable */
+  transition: background 0.2s, transform 0.15s; /* Smooth hover effect */
+  display: inline-flex; /* Lets icon and text align neatly */
+  align-items: center; /* Vertically centers button content */
+  gap: 8px; /* Space between button icon and text */
+}
+.btn-primary:hover {
+  background: var(--blue-hover); /* Hover color */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.btn-green {
+  background: var(--green); /* Green action button */
+  color: var(--dark); /* Dark text for contrast */
+  border: none; /* Removes default border */
+  border-radius: var(--radius); /* Rounded corners */
+  padding: 13px 30px; /* Button spacing */
+  font-family: var(--font);
+  font-weight: 700; /* Bold button text */
+  font-size: 0.84rem;
+  letter-spacing: 0.4px;
+  cursor: pointer; /* Clickable cursor */
+  transition: opacity 0.2s, transform 0.15s; /* Smooth hover animation */
+  display: inline-flex; /* Helps align icon and text */
+  align-items: center;
+  gap: 8px; /* Space between inline items */
+}
+.btn-green:hover {
+  opacity: 0.85; /* Slight fade on hover */
+  transform: translateY(-2px); /* Small lift effect */
+}
+
+.btn-outline {
+  background: transparent; /* Transparent button background */
+  color: #fff; /* White text */
+  border: 1.5px solid rgba(255,255,255,0.3); /* Subtle outline */
+  border-radius: var(--radius); /* Rounded corners */
+  padding: 12px 28px; /* Button spacing */
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.84rem;
+  letter-spacing: 0.4px;
+  cursor: pointer; /* Clickable cursor */
+  transition: border-color 0.2s, transform 0.15s; /* Smooth hover effect */
+  display: inline-flex; /* Aligns icon/text neatly */
+  align-items: center;
+  gap: 8px;
+}
+.btn-outline:hover {
+  border-color: #fff; /* Brighter border on hover */
+  transform: translateY(-2px); /* Small lift effect */
+}
+
+.btn-ghost {
+  background: transparent; /* Transparent ghost button */
+  color: var(--gray); /* Muted default text */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft outline */
+  border-radius: var(--radius); /* Rounded corners */
+  padding: 10px 20px; /* Button spacing */
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer; /* Clickable cursor */
+  transition: color 0.2s, border-color 0.2s; /* Smooth hover effect */
+}
+.btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.3); } /* Hover state for ghost button */
+
+.btn-danger {
+  background: var(--red); /* Danger/delete button color */
+  color: #fff;
+  border: none; /* Removes default border */
+  border-radius: var(--radius); /* Rounded corners */
+  padding: 10px 20px; /* Button spacing */
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 700; /* Bold text */
+  cursor: pointer; /* Clickable cursor */
+  transition: opacity 0.2s; /* Smooth hover fade */
+}
+.btn-danger:hover { opacity: 0.85; } /* Hover effect for danger button */
+
+/* ----- FORM ELEMENTS ----- */
+.form-group {
+  display: flex; /* Stacks label and field vertically */
+  flex-direction: column;
+  gap: 6px; /* Space between label and input */
+  margin-bottom: 20px; /* Space below each form group */
+}
+
+.form-group label {
+  font-size: 0.75rem;
+  font-weight: 700; /* Makes labels clearer */
+  letter-spacing: 1px; /* Slightly spaced label text */
+  text-transform: uppercase; /* Keeps label style consistent */
+  color: var(--gray); /* Muted label color */
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--dark-3); /* Input background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft input border */
+  border-radius: var(--radius); /* Rounded corners */
+  color: var(--white); /* Field text color */
+  font-family: var(--font);
+  font-size: 0.88rem;
+  padding: 12px 16px; /* Field spacing */
+  outline: none; /* Removes browser outline */
+  transition: border-color 0.2s; /* Smooth focus effect */
+  width: 100%; /* Makes fields fill container width */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--blue); /* Focus highlight color */
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--gray-dim); /* Placeholder text color */
+}
+
+.form-group select option {
+  background: var(--dark-3); /* Keeps dropdown options matching dark theme */
+}
+
+.form-error {
+  font-size: 0.75rem; /* Small error text */
+  color: var(--red); /* Error color */
+  margin-top: 2px; /* Tiny spacing above error text */
+}
+
+/* ----- SECTION HELPERS ----- */
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 700; /* Strong small section label */
+  letter-spacing: 3px; /* Gives the label a stylish spaced look */
+  text-transform: uppercase; /* Consistent label style */
+  color: var(--green); /* Accent color */
+  margin-bottom: 8px; /* Space below the label */
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem); /* Responsive section heading size */
+  font-weight: 800; /* Strong title emphasis */
+  letter-spacing: -0.8px; /* Tightens title a bit */
+  margin-bottom: 10px; /* Space below title */
+}
+
+.section-sub {
+  font-size: 0.9rem;
+  color: var(--gray); /* Secondary descriptive text */
+  line-height: 1.75; /* Improves readability */
+  max-width: 520px; /* Prevents very long lines */
+}
+
+.divider {
+  height: 1px; /* Thin divider line */
+  background: rgba(255,255,255,0.06); /* Subtle divider color */
+}
+
+/* ----- PAGE WRAPPER ----- */
+.page-wrapper {
+  padding-top: var(--nav-h); /* Leaves room for the fixed navbar */
+  min-height: 100vh; /* Full-page minimum height */
+}
+
+.container {
+  max-width: 1200px; /* Standard content width */
+  margin: 0 auto; /* Centers content */
+  padding: 0 48px; /* Side padding */
+}
+
+/* ----- CARD ----- */
+.card {
+  background: var(--dark-2); /* Generic card background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft card border */
+  border-radius: var(--radius-md); /* Rounded card corners */
+  padding: 28px; /* Inner spacing */
+}
+
+/* ----- BADGE ----- */
+.badge {
+  display: inline-block; /* Lets badge wrap only its content */
+  font-size: 0.62rem;
+  font-weight: 700; /* Strong badge text */
+  letter-spacing: 1px; /* Neat badge text spacing */
+  text-transform: uppercase; /* Consistent badge look */
+  padding: 3px 10px; /* Badge spacing */
+  border-radius: 2px; /* Slightly rounded badge corners */
+}
+.badge-blue  { background: var(--blue); color: #fff; } /* Blue badge style */
+.badge-green { background: var(--green); color: var(--dark); } /* Green badge style */
+.badge-red   { background: var(--red); color: #fff; } /* Red badge style */
+.badge-gray  { background: var(--dark-4); color: var(--gray); } /* Neutral badge style */
+
+/* ----- SCROLL FADE ----- */
+.fade-in {
+  opacity: 0; /* Hidden before animation */
+  transform: translateY(22px); /* Starts slightly lower */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth reveal animation */
+}
+.fade-in.visible {
+  opacity: 1; /* Shows element when JS adds visible */
+  transform: none; /* Returns element to normal position */
+}
+
+/* ----- TOAST NOTIFICATION ----- */
+#toast {
+  position: fixed; /* Keeps toast floating on screen */
+  bottom: 32px; /* Distance from bottom */
+  right: 32px; /* Distance from right */
+  background: var(--dark-2); /* Toast background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft outer border */
+  border-left: 3px solid var(--green); /* Accent border for success/info */
+  padding: 14px 22px; /* Toast spacing */
+  font-size: 0.84rem;
+  font-weight: 600; /* Makes toast message readable */
+  z-index: 9999; /* Keeps toast above almost everything */
+  border-radius: var(--radius); /* Rounded corners */
+  transform: translateY(20px); /* Starting hidden position */
+  opacity: 0; /* Hidden by default */
+  transition: all 0.3s ease; /* Smooth show/hide animation */
+  pointer-events: none; /* Prevents it from blocking clicks */
+}
+#toast.show {
+  opacity: 1; /* Makes toast visible */
+  transform: translateY(0); /* Slides toast into place */
+}
+#toast.error { border-left-color: var(--red); } /* Error toast accent color */
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 900px) {
+  .container { padding: 0 20px; } /* Reduces side padding on smaller screens */
+}
+
+/* ---- JS-toggled visibility (replaces style="display:none") ---- */
+.nav-hidden   { display: none !important; } /* Hides nav-related elements via JS */
+.js-hidden    { display: none !important; } /* Generic hidden utility class */
+.js-visible   { display: block !important; } /* Forces elements visible as block */
+.js-flex      { display: flex !important; } /* Forces elements visible as flex */

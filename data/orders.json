@@ -1,0 +1,175 @@
+{
+  "orders": [
+    {
+      "id": "ORD-001",
+      "userId": "u1",
+      "userName": "Alex Martin",
+      "date": "2025-01-10",
+      "items": [
+        { "productId": "ps5",      "name": "PS5 Console",  "qty": 1, "price": 499 },
+        { "productId": "dualsense5","name": "DualSense 5", "qty": 1, "price": 79  }
+      ],
+      "subtotal": 578,
+      "discount": 0,
+      "total": 578,
+      "status": "Delivered",
+      "shipping": { "address": "12 Royal Road, Curepipe", "city": "Curepipe" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-002",
+      "userId": "u3",
+      "userName": "Ryan Ng",
+      "date": "2024-10-05",
+      "items": [
+        { "productId": "xbox-x", "name": "Xbox Series X", "qty": 1, "price": 499 }
+      ],
+      "subtotal": 499,
+      "discount": 0,
+      "total": 499,
+      "status": "Delivered",
+      "shipping": { "address": "8 La Paix Street, Rose Hill", "city": "Rose Hill" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-003",
+      "userId": "u3",
+      "userName": "Ryan Ng",
+      "date": "2024-11-18",
+      "items": [
+        { "productId": "jbl-t450",    "name": "JBL T450 Headphone",       "qty": 2, "price": 39 },
+        { "productId": "awei-hp",     "name": "Awei Wireless Headphone",  "qty": 1, "price": 49 },
+        { "productId": "dualshock4",  "name": "DualShock 4",              "qty": 1, "price": 59 }
+      ],
+      "subtotal": 186,
+      "discount": 9.3,
+      "total": 176.7,
+      "status": "Delivered",
+      "shipping": { "address": "8 La Paix Street, Rose Hill", "city": "Rose Hill" },
+      "paymentMethod": "PayPal"
+    },
+    {
+      "id": "ORD-004",
+      "userId": "u1",
+      "userName": "Alex Martin",
+      "date": "2025-03-22",
+      "items": [
+        { "productId": "ps4", "name": "PS4 Console", "qty": 1, "price": 249 }
+      ],
+      "subtotal": 249,
+      "discount": 12.45,
+      "total": 236.55,
+      "status": "Delivered",
+      "shipping": { "address": "12 Royal Road, Curepipe", "city": "Curepipe" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-005",
+      "userId": "u3",
+      "userName": "Ryan Ng",
+      "date": "2025-01-02",
+      "items": [
+        { "productId": "airpods4",    "name": "Apple AirPods 4", "qty": 1, "price": 179 },
+        { "productId": "xbox-ctrl",   "name": "Xbox X Controller","qty": 1, "price": 64  }
+      ],
+      "subtotal": 243,
+      "discount": 24.3,
+      "total": 218.7,
+      "status": "Delivered",
+      "shipping": { "address": "8 La Paix Street, Rose Hill", "city": "Rose Hill" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-006",
+      "userId": "u4",
+      "userName": "Marie Leclaire",
+      "date": "2025-02-20",
+      "items": [
+        { "productId": "dualsense5", "name": "DualSense 5", "qty": 1, "price": 79 }
+      ],
+      "subtotal": 79,
+      "discount": 0,
+      "total": 79,
+      "status": "Delivered",
+      "shipping": { "address": "22 Avenue des Fleurs, Vacoas", "city": "Vacoas" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-007",
+      "userId": "u3",
+      "userName": "Ryan Ng",
+      "date": "2025-02-14",
+      "items": [
+        { "productId": "sony-ult", "name": "SONY ULT Wireless", "qty": 1, "price": 129 }
+      ],
+      "subtotal": 129,
+      "discount": 12.9,
+      "total": 116.1,
+      "status": "Delivered",
+      "shipping": { "address": "8 La Paix Street, Rose Hill", "city": "Rose Hill" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-008",
+      "userId": "u5",
+      "userName": "Javed Patel",
+      "date": "2024-12-25",
+      "items": [
+        { "productId": "nintendo-switch", "name": "Nintendo Switch", "qty": 1, "price": 299 },
+        { "productId": "joy-con",         "name": "Nintendo Joy-Con","qty": 1, "price": 69  }
+      ],
+      "subtotal": 368,
+      "discount": 0,
+      "total": 368,
+      "status": "Delivered",
+      "shipping": { "address": "3 Nehru Street, Quatre Bornes", "city": "Quatre Bornes" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-009",
+      "userId": "u3",
+      "userName": "Ryan Ng",
+      "date": "2025-04-01",
+      "items": [
+        { "productId": "samsung-pro-hp", "name": "Samsung Headphone Pro", "qty": 1, "price": 89 },
+        { "productId": "awei-hp",        "name": "Awei Wireless Headphone","qty": 1, "price": 49 }
+      ],
+      "subtotal": 138,
+      "discount": 13.8,
+      "total": 124.2,
+      "status": "Delivered",
+      "shipping": { "address": "8 La Paix Street, Rose Hill", "city": "Rose Hill" },
+      "paymentMethod": "PayPal"
+    },
+    {
+      "id": "ORD-010",
+      "userId": "u5",
+      "userName": "Javed Patel",
+      "date": "2025-03-10",
+      "items": [
+        { "productId": "sony-ult", "name": "SONY ULT Wireless", "qty": 1, "price": 129 }
+      ],
+      "subtotal": 129,
+      "discount": 6.45,
+      "total": 122.55,
+      "status": "Delivered",
+      "shipping": { "address": "3 Nehru Street, Quatre Bornes", "city": "Quatre Bornes" },
+      "paymentMethod": "Card"
+    },
+    {
+      "id": "ORD-011",
+      "userId": "u5",
+      "userName": "Javed Patel",
+      "date": "2025-04-15",
+      "items": [
+        { "productId": "samsung-pro-hp", "name": "Samsung Headphone Pro", "qty": 1, "price": 89 }
+      ],
+      "subtotal": 89,
+      "discount": 8.9,
+      "total": 80.1,
+      "status": "Shipped",
+      "shipping": { "address": "3 Nehru Street, Quatre Bornes", "city": "Quatre Bornes" },
+      "paymentMethod": "Card"
+    }
+  ]
+}

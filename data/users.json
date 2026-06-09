@@ -1,0 +1,97 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "Alex Martin",
+      "email": "alex@shopify.mu",
+      "password": "user1234",
+      "role": "user",
+      "phone": "+230 5000 0001",
+      "address": "12 Royal Road, Curepipe",
+      "purchaseCount": 2,
+      "joined": "2024-11-03",
+      "status": "active",
+      "orders": [
+        { "id": "ORD-001", "date": "2025-01-10", "items": 2, "total": 578, "status": "Delivered" },
+        { "id": "ORD-004", "date": "2025-03-22", "items": 1, "total": 249, "status": "Delivered" }
+      ]
+    },
+    {
+      "id": "u2",
+      "name": "Sarah Dupont",
+      "email": "sarah@shopify.mu",
+      "password": "user1234",
+      "role": "user",
+      "phone": "+230 5000 0002",
+      "address": "45 Bourbon Street, Port Louis",
+      "purchaseCount": 0,
+      "joined": "2025-01-15",
+      "status": "active",
+      "orders": []
+    },
+    {
+      "id": "u3",
+      "name": "Ryan Ng",
+      "email": "ryan@shopify.mu",
+      "password": "user1234",
+      "role": "user",
+      "phone": "+230 5000 0003",
+      "address": "8 La Paix Street, Rose Hill",
+      "purchaseCount": 5,
+      "joined": "2024-09-20",
+      "status": "active",
+      "orders": [
+        { "id": "ORD-002", "date": "2024-10-05", "items": 1, "total": 499, "status": "Delivered" },
+        { "id": "ORD-003", "date": "2024-11-18", "items": 3, "total": 217, "status": "Delivered" },
+        { "id": "ORD-005", "date": "2025-01-02", "items": 2, "total": 168, "status": "Delivered" },
+        { "id": "ORD-007", "date": "2025-02-14", "items": 1, "total": 129, "status": "Delivered" },
+        { "id": "ORD-009", "date": "2025-04-01", "items": 2, "total": 143, "status": "Delivered" }
+      ]
+    },
+    {
+      "id": "u4",
+      "name": "Marie Leclaire",
+      "email": "marie@shopify.mu",
+      "password": "user1234",
+      "role": "user",
+      "phone": "+230 5000 0004",
+      "address": "22 Avenue des Fleurs, Vacoas",
+      "purchaseCount": 1,
+      "joined": "2025-02-08",
+      "status": "inactive",
+      "orders": [
+        { "id": "ORD-006", "date": "2025-02-20", "items": 1, "total": 79, "status": "Delivered" }
+      ]
+    },
+    {
+      "id": "u5",
+      "name": "Javed Patel",
+      "email": "javed@shopify.mu",
+      "password": "user1234",
+      "role": "user",
+      "phone": "+230 5000 0005",
+      "address": "3 Nehru Street, Quatre Bornes",
+      "purchaseCount": 3,
+      "joined": "2024-12-01",
+      "status": "active",
+      "orders": [
+        { "id": "ORD-008", "date": "2024-12-25", "items": 2, "total": 346, "status": "Delivered" },
+        { "id": "ORD-010", "date": "2025-03-10", "items": 1, "total": 129, "status": "Delivered" },
+        { "id": "ORD-011", "date": "2025-04-15", "items": 1, "total": 89,  "status": "Shipped" }
+      ]
+    },
+    {
+      "id": "a1",
+      "name": "Admin",
+      "email": "admin@shopify.mu",
+      "password": "admin1234",
+      "role": "admin",
+      "phone": "+230 5000 0000",
+      "address": "Shopify HQ, Port Louis",
+      "purchaseCount": 0,
+      "joined": "2024-01-01",
+      "status": "active",
+      "orders": []
+    }
+  ]
+}

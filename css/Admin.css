@@ -1,0 +1,466 @@
+/* =============================================
+   SHOPIFY – Admin Dashboard Stylesheet
+   ============================================= */
+
+.admin-layout {
+  display: flex; /* Main admin page uses a side-by-side layout */
+  min-height: 100vh; /* Makes the layout fill the full screen height */
+  padding-top: var(--nav-h); /* Leaves space for the fixed top navbar */
+}
+
+/* ----- SIDEBAR ----- */
+.admin-sidebar {
+  width: 240px; /* Fixed sidebar width */
+  background: var(--dark-2); /* Dark sidebar background */
+  border-right: 1px solid rgba(255,255,255,0.07); /* Subtle divider from main content */
+  position: fixed; /* Keeps sidebar pinned on screen */
+  top: var(--nav-h); /* Starts below the navbar */
+  left: 0;
+  bottom: 0; /* Stretches sidebar to the bottom of the viewport */
+  overflow-y: auto; /* Lets sidebar scroll if content gets long */
+  z-index: 100; /* Keeps it above normal content */
+  display: flex; /* Allows footer to stick to bottom nicely */
+  flex-direction: column; /* Stacks sidebar content vertically */
+}
+
+.sidebar-section {
+  padding: 20px 16px 8px; /* Spacing inside each sidebar block */
+}
+
+.sidebar-section-label {
+  font-size: 0.62rem; /* Small label text */
+  font-weight: 700; /* Makes labels stand out a bit */
+  letter-spacing: 2px; /* Adds that dashboard-style spaced look */
+  text-transform: uppercase; /* Keeps section labels clean and consistent */
+  color: var(--gray-dim); /* Muted label color */
+  padding: 0 8px;
+  margin-bottom: 8px; /* Space below the label */
+}
+
+.sidebar-link {
+  display: flex; /* Aligns icon and text in one row */
+  align-items: center; /* Vertically centers icon and text */
+  gap: 10px; /* Space between icon and text */
+  padding: 10px 12px; /* Clickable area padding */
+  border-radius: var(--radius); /* Rounded dashboard button look */
+  font-size: 0.82rem;
+  font-weight: 600; /* Slightly bold for readability */
+  color: var(--gray); /* Default muted link color */
+  cursor: pointer; /* Feels clickable */
+  transition: background 0.15s, color 0.15s; /* Smooth hover effect */
+  margin-bottom: 2px; /* Small spacing between links */
+  text-decoration: none; /* Removes default underline */
+}
+.sidebar-link:hover  { background: rgba(255,255,255,0.05); color: #fff; } /* Hover highlight */
+.sidebar-link.active { background: rgba(24,91,209,0.18); color: #fff; border-left: 2px solid var(--blue); padding-left: 10px; } /* Active page state */
+
+.sidebar-icon {
+  width: 20px; /* Gives icons a consistent width */
+  text-align: center; /* Keeps icons visually aligned */
+  font-size: 0.9rem;
+  flex-shrink: 0; /* Prevents icon from squishing */
+}
+
+.sidebar-badge {
+  margin-left: auto; /* Pushes badge to the far right */
+  background: var(--blue); /* Badge highlight color */
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 7px; /* Compact badge shape */
+  border-radius: 10px; /* Pill badge look */
+}
+
+.sidebar-footer {
+  margin-top: auto; /* Pushes footer to the bottom of sidebar */
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06); /* Separates footer from nav links */
+}
+
+.sidebar-user {
+  display: flex; /* Avatar and user info in one row */
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s; /* Smooth hover feedback */
+}
+.sidebar-user:hover { background: rgba(255,255,255,0.05); } /* Hover effect for user block */
+
+.sidebar-avatar {
+  width: 34px; height: 34px; /* Fixed avatar size */
+  background: var(--blue); /* Brand accent color */
+  border-radius: 50%; /* Makes it circular */
+  display: flex; /* Centers initials/icon inside */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0; /* Keeps avatar size from shrinking */
+}
+
+.sidebar-user-info { min-width: 0; } /* Allows ellipsis to work properly inside flex */
+.sidebar-user-name  { font-size: 0.82rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* Prevents long names from breaking layout */
+.sidebar-user-role  { font-size: 0.68rem; color: var(--green); font-weight: 600; } /* Role text styling */
+
+/* ----- MAIN CONTENT ----- */
+.admin-main {
+  margin-left: 240px; /* Leaves room for the fixed sidebar */
+  flex: 1; /* Lets main content take remaining width */
+  padding: 36px 40px; /* Comfortable content spacing */
+  overflow-x: hidden; /* Prevents annoying sideways scroll */
+}
+
+.admin-page-title {
+  font-size: 1.5rem; /* Main page heading size */
+  font-weight: 800; /* Strong title emphasis */
+  margin-bottom: 4px;
+}
+.admin-page-sub {
+  font-size: 0.84rem;
+  color: var(--gray); /* Secondary description color */
+  margin-bottom: 32px; /* Space before next content block */
+}
+
+/* ----- STAT CARDS ----- */
+.stats-grid {
+  display: grid; /* Dashboard cards layout */
+  grid-template-columns: repeat(4, 1fr); /* Four cards per row on desktop */
+  gap: 18px; /* Space between cards */
+  margin-bottom: 32px; /* Space below stats section */
+}
+
+.stat-card {
+  background: var(--dark-2); /* Card background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft card border */
+  border-radius: var(--radius-md); /* Rounded card corners */
+  padding: 22px 24px; /* Internal card spacing */
+  position: relative; /* Needed for the colored side bar */
+  overflow: hidden; /* Keeps pseudo-element clean inside card */
+}
+.stat-card::before {
+  content: ''; /* Decorative color bar */
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%; /* Full-height vertical accent line */
+}
+.stat-card.blue::before  { background: var(--blue); } /* Blue status card */
+.stat-card.green::before { background: var(--green); } /* Green status card */
+.stat-card.red::before   { background: var(--red); } /* Red status card */
+.stat-card.gray::before  { background: var(--gray-dim); } /* Neutral status card */
+
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase; /* Makes labels look more dashboard-y */
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.stat-value {
+  font-size: 1.8rem; /* Main number stands out */
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-change {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--green); /* Positive trend color */
+}
+.stat-change.down { color: var(--red); } /* Negative trend color */
+
+/* ----- DATA TABLE ----- */
+.admin-table-wrap {
+  background: var(--dark-2); /* Table container background */
+  border: 1px solid rgba(255,255,255,0.07); /* Light border for separation */
+  border-radius: var(--radius-md); /* Rounded outer table container */
+  overflow: hidden; /* Keeps borders and hover states neat */
+  margin-bottom: 28px;
+}
+
+.table-head {
+  padding: 18px 24px; /* Header spacing */
+  border-bottom: 1px solid rgba(255,255,255,0.06); /* Divides header from table */
+  display: flex; /* Header title and actions side by side */
+  justify-content: space-between; /* Pushes actions to the right */
+  align-items: center;
+  flex-wrap: wrap; /* Lets content wrap on smaller widths */
+  gap: 12px;
+}
+.table-head h3 { font-size: 0.92rem; font-weight: 700; } /* Table title styling */
+
+.table-actions {
+  display: flex; /* Search and buttons in one row */
+  gap: 10px;
+  align-items: center;
+}
+
+.table-search {
+  background: var(--dark-3); /* Search input background */
+  border: 1px solid rgba(255,255,255,0.08); /* Input outline */
+  border-radius: var(--radius);
+  color: #fff; /* Input text color */
+  font-family: var(--font);
+  font-size: 0.8rem;
+  padding: 8px 14px; /* Comfortable input spacing */
+  outline: none; /* Removes default browser outline */
+  transition: border-color 0.2s; /* Smooth focus effect */
+  width: 200px; /* Fixed search width */
+}
+.table-search:focus { border-color: var(--blue); } /* Focus highlight */
+.table-search::placeholder { color: var(--gray-dim); } /* Placeholder color */
+
+.data-table {
+  width: 100%; /* Full width table */
+  border-collapse: collapse; /* Cleaner table borders */
+  font-size: 0.82rem;
+}
+
+.data-table th {
+  padding: 12px 20px;
+  text-align: left; /* Standard dashboard table alignment */
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase; /* Header labels stay neat */
+  color: var(--gray-dim);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  white-space: nowrap; /* Prevents header text wrapping */
+  background: rgba(255,255,255,0.02); /* Slight header tint */
+}
+
+.data-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04); /* Row separator */
+  color: rgba(255,255,255,0.85);
+  vertical-align: middle; /* Keeps content centered nicely */
+}
+
+.data-table tr:last-child td { border-bottom: none; } /* Removes border on final row */
+
+.data-table tr:hover td { background: rgba(255,255,255,0.025); } /* Row hover feedback */
+
+.table-avatar {
+  width: 30px; height: 30px; /* Small inline avatar size */
+  background: var(--dark-3);
+  border-radius: 50%; /* Circular avatar */
+  display: inline-flex; /* Lets avatar sit inline with text */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-right: 8px; /* Space before text */
+  vertical-align: middle;
+  color: var(--gray);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.table-actions-cell {
+  display: flex; /* Action buttons aligned in a row */
+  gap: 6px;
+}
+
+.btn-table {
+  background: var(--dark-3); /* Table button background */
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--gray);
+  border-radius: 3px;
+  padding: 5px 10px; /* Small compact action button */
+  font-family: var(--font);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s; /* Smooth hover state */
+}
+.btn-table:hover         { color: #fff; border-color: rgba(255,255,255,0.2); } /* Generic button hover */
+.btn-table.edit:hover    { background: rgba(24,91,209,0.2); border-color: var(--blue); color: var(--blue); } /* Edit hover state */
+.btn-table.delete:hover  { background: rgba(224,62,62,0.2); border-color: var(--red); color: var(--red); } /* Delete hover state */
+
+/* Stock bar */
+.stock-bar-wrap {
+  display: flex; /* Bar and number side by side */
+  align-items: center;
+  gap: 10px;
+}
+.stock-bar {
+  flex: 1; /* Lets bar take available width */
+  height: 5px; /* Thin progress bar */
+  background: var(--dark-3);
+  border-radius: 3px;
+  overflow: hidden; /* Keeps fill inside rounded edges */
+  min-width: 60px; /* Prevents the bar from getting too tiny */
+}
+.stock-bar-fill {
+  height: 100%; /* Fill matches bar height */
+  border-radius: 3px;
+  transition: width 0.4s; /* Smooth stock percentage change */
+}
+.stock-bar-fill.high   { background: var(--green); } /* High stock level */
+.stock-bar-fill.medium { background: #f0a500; } /* Medium stock level */
+.stock-bar-fill.low    { background: var(--red); } /* Low stock level */
+.stock-num { font-size: 0.78rem; font-weight: 600; min-width: 24px; } /* Stock number next to the bar */
+
+/* ----- MODAL ----- */
+.modal-overlay {
+  display: none; /* Hidden until modal is opened */
+  position: fixed; /* Covers the whole screen */
+  inset: 0; /* Shortcut for top/right/bottom/left: 0 */
+  background: rgba(0,0,0,0.7); /* Dark page dimmer */
+  z-index: 2000; /* Sits above basically everything */
+  align-items: center; /* Centers modal vertically when open */
+  justify-content: center; /* Centers modal horizontally when open */
+  padding: 20px; /* Prevents modal from touching screen edges */
+}
+.modal-overlay.open { display: flex; } /* JS toggles this to show the modal */
+
+.modal {
+  background: var(--dark-2); /* Modal panel background */
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 520px; /* Keeps modal readable, not crazy wide */
+  max-height: 90vh; /* Prevents modal from overflowing viewport */
+  overflow-y: auto; /* Allows scrolling inside modal if needed */
+}
+
+.modal-head {
+  padding: 22px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.07); /* Header divider */
+  display: flex; /* Title and close button in one row */
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-head h3 { font-size: 1rem; font-weight: 700; } /* Modal title styling */
+.modal-close {
+  background: none; border: none; /* Clean icon-only button */
+  color: var(--gray); cursor: pointer;
+  font-size: 1.4rem; line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: #fff; } /* Brighter on hover */
+
+.modal-body { padding: 28px; } /* Main content spacing inside modal */
+
+.modal-footer {
+  padding: 18px 28px;
+  border-top: 1px solid rgba(255,255,255,0.07); /* Footer divider */
+  display: flex;
+  justify-content: flex-end; /* Buttons aligned to the right */
+  gap: 10px;
+}
+
+/* ----- TABS ----- */
+.admin-tabs {
+  display: flex; /* Tabs laid out in a row */
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07); /* Underline for the tab strip */
+  margin-bottom: 28px;
+}
+.admin-tab {
+  padding: 12px 22px; /* Clickable tab spacing */
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray); /* Inactive tab color */
+  cursor: pointer;
+  border-bottom: 2px solid transparent; /* Reserved space for active underline */
+  transition: all 0.2s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: var(--font);
+  position: relative;
+  bottom: -1px; /* Helps line up active tab border nicely */
+}
+.admin-tab:hover  { color: #fff; } /* Hover state for inactive tabs */
+.admin-tab.active { color: #fff; border-bottom-color: var(--blue); } /* Active tab state */
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 960px) {
+  .admin-sidebar { transform: translateX(-100%); transition: transform 0.3s; } /* Hides sidebar off-screen on tablets/smaller screens */
+  .admin-sidebar.open { transform: translateX(0); } /* Slides sidebar back in when opened */
+  .admin-main { margin-left: 0; padding: 24px 20px; } /* Main content takes full width on smaller screens */
+  .stats-grid { grid-template-columns: 1fr 1fr; } /* Stats drop to 2 columns */
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; } /* Stats stack into 1 column on mobile */
+  .data-table th:nth-child(n+4),
+  .data-table td:nth-child(n+4) { display: none; } /* Hides less important table columns on tiny screens */
+}
+
+/* ---- Extra classes extracted from HTML/JS ---- */
+
+/* Nav admin badge */
+.admin-nav-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--green); /* Green badge text for admin status */
+  border: 1px solid rgba(75,204,62,0.3); /* Soft green outline */
+  padding: 5px 12px;
+  border-radius: 3px;
+}
+
+/* Table cell styles — used in JS-generated rows */
+.td-id     { color: var(--blue);     font-weight: 700; } /* Highlights IDs */
+.td-gray   { color: var(--gray);     } /* Muted table text */
+.td-date   { color: var(--gray);     font-size: 0.78rem; } /* Smaller date text */
+.td-green  { color: var(--green);    font-weight: 700; } /* Positive/status text */
+.td-bold   { font-weight: 700; } /* Strong emphasis cell */
+
+ /* Empty table row */
+.td-empty  { padding: 20px; color: var(--gray-dim); } /* Message shown when table has no data */
+
+ /* Order detail modal */
+.order-detail-meta {
+  display: grid; /* Two-column order info layout */
+  grid-template-columns: 1fr 1fr; /* Meta info split into two columns */
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.order-detail-meta-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase; /* Small dashboard-style labels */
+  color: var(--gray-dim);
+  margin-bottom: 6px;
+}
+
+.order-detail-meta-value { font-weight: 600; } /* Slight emphasis on meta values */
+
+.order-detail-items-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase; /* Label above order items list */
+  color: var(--gray-dim);
+  margin-bottom: 8px;
+}
+
+.order-detail-item {
+  display: flex; /* Product name and price on one row */
+  justify-content: space-between; /* Pushes price to the right */
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Divider between order items */
+  font-size: 0.82rem;
+}
+
+.order-detail-item-price { color: var(--green); } /* Price highlight */
+
+.order-detail-total {
+  display: flex; /* Total label and amount side by side */
+  justify-content: space-between;
+  padding-top: 12px;
+  font-weight: 800; /* Makes total stand out */
+  font-size: 0.95rem;
+}
+
+.order-detail-total-amount { color: var(--green); } /* Final amount highlight */
+
+@media (max-width: 500px) {
+  .order-detail-meta { grid-template-columns: 1fr; } /* Meta layout stacks on very small screens */
+}
+.td-cat { text-transform: capitalize; } /* Makes category names start with capital letters */

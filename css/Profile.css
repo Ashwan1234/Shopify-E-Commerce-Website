@@ -1,0 +1,293 @@
+/* =============================================
+   SHOPIFY – Profile Page Stylesheet
+   ============================================= */
+
+.profile-page {
+  padding: 48px 48px 80px; /* Main spacing around the profile page */
+  max-width: 1000px; /* Keeps content from stretching too wide */
+  margin: 0 auto; /* Centers the profile page */
+}
+
+.profile-header {
+  display: flex; /* Aligns avatar, user info, and stats in one row */
+  align-items: center; /* Vertically centers header content */
+  gap: 24px; /* Space between header items */
+  margin-bottom: 40px; /* Space below the profile header */
+  padding-bottom: 32px; /* Bottom spacing before the divider */
+  border-bottom: 1px solid rgba(255,255,255,0.07); /* Divider under the header */
+}
+
+.profile-avatar-wrap { position: relative; } /* Lets the edit button sit on top of the avatar */
+
+.profile-avatar {
+  width: 84px; height: 84px; /* Avatar size */
+  background: var(--blue); /* Blue avatar background */
+  border-radius: 50%; /* Makes the avatar circular */
+  display: flex; /* Centers avatar content */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem; /* Big initials/icon size */
+  font-weight: 800; /* Strong avatar text */
+  border: 3px solid rgba(255,255,255,0.1); /* Soft border around avatar */
+  /* PLACEHOLDER: <img src="avatar.jpg" alt="User Avatar"> */
+}
+
+.avatar-edit-btn {
+  position: absolute; /* Places the edit button on the avatar */
+  bottom: 0; right: 0;
+  width: 26px; height: 26px; /* Small circular edit button */
+  background: var(--blue); /* Matches brand color */
+  border: 2px solid var(--dark); /* Helps the button stand out from the avatar */
+  border-radius: 50%; /* Circular button */
+  cursor: pointer; /* Shows it is clickable */
+  display: flex; /* Centers the icon inside */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  transition: background 0.2s; /* Smooth hover effect */
+}
+.avatar-edit-btn:hover { background: var(--blue-hover); } /* Hover state for edit button */
+
+.profile-meta { flex: 1; } /* Lets the user info take available space */
+.profile-name { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; } /* Main profile name styling */
+.profile-email { font-size: 0.84rem; color: var(--gray); margin-bottom: 10px; } /* Email text styling */
+.profile-since { font-size: 0.75rem; color: var(--gray-dim); } /* Joined date styling */
+
+.profile-stats {
+  display: flex; /* Places stat boxes in a row */
+  gap: 24px; /* Space between stats */
+  margin-left: auto; /* Pushes stats to the far right */
+}
+.p-stat { text-align: center; } /* Centers each stat block */
+.p-stat-val { font-size: 1.4rem; font-weight: 800; color: var(--green); } /* Highlights stat number */
+.p-stat-label { font-size: 0.68rem; font-weight: 600; color: var(--gray-dim); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; } /* Small stat label styling */
+
+/* ----- PROFILE GRID ----- */
+.profile-grid {
+  display: grid; /* Main profile content uses grid layout */
+  grid-template-columns: 1fr 1fr; /* Two-column layout */
+  gap: 24px; /* Space between profile sections */
+}
+
+.profile-section {
+  background: var(--dark-2); /* Section card background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft card border */
+  border-radius: var(--radius-md); /* Rounded corners */
+  overflow: hidden; /* Keeps inner borders/content tidy */
+}
+.profile-section.full { grid-column: 1 / -1; } /* Makes a section span the full row */
+
+.profile-section-head {
+  padding: 16px 22px; /* Header spacing inside section cards */
+  border-bottom: 1px solid rgba(255,255,255,0.06); /* Divider between header and body */
+  display: flex; /* Aligns title and actions in one row */
+  justify-content: space-between; /* Pushes items apart */
+  align-items: center;
+}
+.profile-section-head h3 { font-size: 0.88rem; font-weight: 700; } /* Section title styling */
+
+.profile-section-body { padding: 22px; } /* Main content padding inside each section */
+
+/* ----- LOYALTY CARD ----- */
+.loyalty-card {
+  background: linear-gradient(135deg, #112d6a, #0d1f42); /* Fancy card gradient */
+  border-radius: 8px; /* Rounded loyalty card */
+  padding: 24px; /* Inner spacing */
+  position: relative; /* Needed for decorative circle */
+  overflow: hidden; /* Keeps the decoration inside the card */
+  margin-bottom: 18px; /* Space below the loyalty card */
+}
+.loyalty-card::before {
+  content: ''; /* Decorative background circle */
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px; /* Circle size */
+  background: rgba(255,255,255,0.04); /* Subtle shine effect */
+  border-radius: 50%;
+}
+.loyalty-tier { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 8px; } /* Loyalty level label */
+.loyalty-name { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; } /* Loyalty card title */
+.loyalty-discount { font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-bottom: 16px; } /* Discount description text */
+.loyalty-bar-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-bottom: 6px; } /* Row above the progress bar */
+.loyalty-progress {
+  height: 6px; /* Progress bar height */
+  background: rgba(255,255,255,0.1); /* Bar background */
+  border-radius: 3px; /* Rounded progress bar */
+  overflow: hidden; /* Keeps fill inside bar */
+}
+.loyalty-progress-fill {
+  height: 100%; /* Fill matches full bar height */
+  background: var(--green); /* Green progress fill */
+  border-radius: 3px;
+  transition: width 0.6s ease; /* Smooth progress animation */
+}
+
+/* ----- ORDER HISTORY ----- */
+.order-history-item {
+  display: flex; /* Aligns order details left and right */
+  justify-content: space-between; /* Pushes totals/status to the right */
+  align-items: center; /* Vertically centers order row content */
+  padding: 14px 0; /* Vertical spacing for each order row */
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Divider between orders */
+  gap: 12px; /* Space between row items */
+}
+.order-history-item:last-child { border-bottom: none; } /* Removes divider from the last item */
+
+.order-id { font-size: 0.78rem; font-weight: 700; color: var(--blue); } /* Order number styling */
+.order-date { font-size: 0.72rem; color: var(--gray-dim); margin-top: 2px; } /* Order date styling */
+.order-items-count { font-size: 0.75rem; color: var(--gray); } /* Number of items text */
+.order-total { font-size: 0.88rem; font-weight: 700; color: var(--green); text-align: right; } /* Order total highlight */
+.order-status { font-size: 0.68rem; color: var(--gray-dim); text-align: right; margin-top: 2px; } /* Order status text */
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 760px) {
+  .profile-page { padding: 32px 20px 60px; } /* Reduces page padding on smaller screens */
+  .profile-grid { grid-template-columns: 1fr; } /* Stacks profile sections into one column */
+  .profile-header { flex-wrap: wrap; } /* Lets header items wrap on smaller screens */
+  .profile-stats { margin-left: 0; } /* Stops stats from being pushed too far right on mobile */
+}
+
+/* =============================================
+   SHOPIFY – Footer Stylesheet
+   ============================================= */
+
+footer {
+  background: #080808; /* Dark footer background */
+  padding: 60px 48px 28px; /* Main footer spacing */
+  border-top: 1px solid rgba(255,255,255,0.06); /* Divider above footer */
+}
+
+.footer-top {
+  display: grid; /* Footer content uses grid layout */
+  grid-template-columns: 2.2fr 1fr 1fr 1fr; /* Brand column wider than the others */
+  gap: 48px; /* Space between footer columns */
+  margin-bottom: 48px; /* Space before lower footer parts */
+}
+
+.footer-brand-logo {
+  display: flex; /* Aligns footer logo icon and text */
+  align-items: center;
+  gap: 10px; /* Space between logo icon and text */
+  margin-bottom: 14px; /* Space below brand logo */
+}
+.footer-logo-icon {
+  width: 32px; height: 32px; /* Footer logo box size */
+  background: var(--blue); /* Brand blue background */
+  border-radius: 3px;
+  display: flex; /* Centers the logo character/icon */
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  /* PLACEHOLDER: <img src="../assets/logo.png"> */
+}
+.footer-logo-text { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.4px; } /* Footer brand name styling */
+.footer-logo-text span { color: var(--green); } /* Highlights the second part of the brand name */
+
+.footer-brand p {
+  font-size: 0.82rem;
+  color: var(--gray); /* Footer description color */
+  line-height: 1.8; /* Easy-to-read paragraph spacing */
+  max-width: 300px; /* Keeps footer text compact */
+  margin-bottom: 20px; /* Space before address */
+}
+.footer-address { font-size: 0.78rem; color: var(--gray-dim); } /* Footer address styling */
+
+.footer-col h4 {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px; /* Gives footer headings that neat spaced look */
+  text-transform: uppercase; /* Consistent heading style */
+  color: var(--gray-dim);
+  margin-bottom: 18px; /* Space below each footer heading */
+}
+.footer-col ul li {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.5); /* Default muted footer links */
+  margin-bottom: 10px; /* Space between list items */
+  cursor: pointer; /* Makes items feel clickable */
+  transition: color 0.2s; /* Smooth hover effect */
+}
+.footer-col ul li:hover { color: #fff; } /* Hover state for footer links */
+
+.footer-video {
+  margin-bottom: 48px; /* Space below video section */
+  padding-bottom: 40px; /* Inner spacing before lower divider */
+  border-bottom: 1px solid rgba(255,255,255,0.06); /* Divider under video area */
+}
+.footer-video h4 {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase; /* Footer video title styling */
+  color: var(--gray-dim);
+  margin-bottom: 16px; /* Space below video heading */
+}
+.footer-video-frame {
+  width: 100%; /* Video frame takes full allowed width */
+  max-width: 380px; /* Keeps footer video compact */
+  aspect-ratio: 16/9; /* Keeps widescreen shape */
+  background: #000; /* Black video background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft border around video */
+  border-radius: 4px;
+  overflow: hidden; /* Keeps iframe corners clipped */
+}
+.footer-video-frame iframe {
+  width: 100%; /* Fills the frame */
+  height: 100%;
+  border: none; /* Removes default iframe border */
+  display: block; /* Avoids inline spacing issues */
+}
+
+.footer-bottom {
+  display: flex; /* Aligns copyright and payments in one row */
+  justify-content: space-between; /* Pushes them apart */
+  align-items: center; /* Vertically centers content */
+  flex-wrap: wrap; /* Lets content wrap on smaller screens */
+  gap: 14px; /* Space when wrapping happens */
+}
+.footer-bottom p { font-size: 0.76rem; color: var(--gray-dim); } /* Copyright text styling */
+
+.footer-payments {
+  display: flex; /* Payment badges in a row */
+  gap: 8px; /* Space between payment badges */
+}
+.payment-badge {
+  background: var(--dark-3); /* Badge background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft badge border */
+  padding: 4px 12px; /* Badge spacing */
+  font-size: 0.68rem;
+  font-weight: 700; /* Makes payment names stand out */
+  color: var(--gray);
+  border-radius: 3px;
+  letter-spacing: 0.5px; /* Slight spacing for a cleaner badge look */
+}
+
+@media (max-width: 900px) {
+  footer { padding: 48px 20px 24px; } /* Reduces footer padding on medium screens */
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } /* Footer becomes 2 columns */
+}
+@media (max-width: 550px) {
+  .footer-top { grid-template-columns: 1fr; } /* Footer stacks into 1 column on small screens */
+}
+
+/* ---- Extra classes extracted from HTML ---- */
+
+.loyalty-info {
+  font-size: 0.8rem;
+  color: var(--gray); /* Loyalty helper text color */
+  line-height: 1.75; /* Comfortable reading spacing */
+}
+.loyalty-info strong      { color: var(--white); } /* Strong text stands out more */
+.loyalty-info-green       { color: var(--green); } /* Green highlight text */
+
+.profile-empty-text { color: var(--gray-dim); font-size: 0.85rem; } /* Text shown when there is no profile data/history */
+
+.profile-link { color: var(--blue); font-weight: 600; } /* Profile-related link styling */
+.profile-link:hover { color: var(--blue-hover); } /* Hover state for profile links */
+
+.profile-actions-row {
+  display: flex; /* Places action buttons in one row */
+  gap: 12px; /* Space between action buttons */
+  flex-wrap: wrap; /* Lets buttons wrap on smaller screens */
+}

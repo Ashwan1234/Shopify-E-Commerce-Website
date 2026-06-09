@@ -1,0 +1,404 @@
+/* =============================================
+   SHOPIFY – Payment / Checkout Stylesheet
+   ============================================= */
+
+.checkout-page {
+  padding: 48px 48px 80px; /* Main spacing around the checkout page */
+}
+
+.checkout-grid {
+  display: grid; /* Splits checkout into left form and right summary */
+  grid-template-columns: 1fr 400px; /* Main content + fixed-width summary panel */
+  gap: 40px; /* Space between the two columns */
+  align-items: start; /* Keeps both columns aligned from the top */
+  max-width: 1100px; /* Prevents the layout from getting too wide */
+  margin: 0 auto; /* Centers the whole checkout layout */
+}
+
+/* ----- STEP INDICATOR ----- */
+.checkout-steps {
+  display: flex; /* Places checkout steps in one row */
+  align-items: center; /* Vertically centers step content */
+  gap: 0;
+  margin-bottom: 40px; /* Space below the step indicator */
+  max-width: 1100px; /* Matches the main checkout width */
+  margin-left: auto;
+  margin-right: auto; /* Centers the steps container */
+}
+
+.step {
+  display: flex; /* Aligns step number and label */
+  align-items: center;
+  gap: 10px; /* Space between number and text */
+  flex: 1; /* Lets each step share the available width */
+  position: relative; /* Helps with connector styling */
+}
+
+.step:not(:last-child)::after {
+  content: ''; /* Horizontal line connecting steps */
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1); /* Soft connector color */
+  margin: 0 12px; /* Space around the connector line */
+}
+
+.step-num {
+  width: 32px; /* Step circle width */
+  height: 32px; /* Step circle height */
+  border-radius: 50%; /* Makes the step number circular */
+  background: var(--dark-3); /* Default step background */
+  border: 1.5px solid rgba(255,255,255,0.15); /* Light circle outline */
+  display: flex; /* Centers the number inside */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700; /* Makes the step number stand out */
+  flex-shrink: 0; /* Prevents the circle from shrinking */
+  transition: all 0.2s; /* Smooth state change */
+}
+
+.step.active .step-num {
+  background: var(--blue); /* Current step highlight */
+  border-color: var(--blue);
+}
+
+.step.done .step-num {
+  background: var(--green); /* Completed step color */
+  border-color: var(--green);
+  color: var(--dark); /* Dark text for contrast on green */
+}
+
+.step-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray-dim); /* Default muted label */
+  white-space: nowrap; /* Prevents step labels from breaking awkwardly */
+}
+.step.active .step-label { color: #fff; } /* Active step label */
+.step.done   .step-label { color: var(--green); } /* Completed step label */
+
+/* ----- LEFT PANEL ----- */
+.checkout-left { display: block; } /* Main left-side checkout content */
+
+.checkout-section {
+  background: var(--dark-2); /* Card background for each checkout section */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft card border */
+  border-radius: var(--radius-md); /* Rounded section corners */
+}
+
+.checkout-section-head {
+  padding: 18px 24px; /* Header spacing */
+  border-bottom: 1px solid rgba(255,255,255,0.06); /* Divider between header and body */
+  display: flex; /* Title and possible action on one row */
+  justify-content: space-between; /* Pushes header items apart */
+  align-items: center;
+}
+
+.checkout-section-head h3 {
+  font-size: 0.92rem;
+  font-weight: 700; /* Section title emphasis */
+}
+
+.checkout-section-body { padding: 24px; } /* Inner spacing for section content */
+
+.form-row {
+  display: grid; /* Places form fields side by side */
+  grid-template-columns: 1fr 1fr; /* Two-column form layout */
+  gap: 16px; /* Space between fields */
+}
+
+/* Card number display */
+.card-preview {
+  background: linear-gradient(135deg, #1a2f6b, #0d1f42); /* Credit card style background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft border */
+  border-radius: 10px; /* Rounded card corners */
+  padding: 22px 24px; /* Inner spacing */
+  margin-bottom: 24px; /* Space below the preview card */
+  position: relative; /* Needed for decorative circles */
+  overflow: hidden; /* Keeps decorative shapes inside */
+}
+.card-preview::before {
+  content: ''; /* Decorative circle */
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 140px; height: 140px; /* Circle size */
+  background: rgba(255,255,255,0.04); /* Very subtle highlight */
+  border-radius: 50%;
+}
+.card-preview::after {
+  content: ''; /* Second decorative circle */
+  position: absolute;
+  bottom: -60px; right: 20px;
+  width: 180px; height: 180px; /* Larger circle size */
+  background: rgba(255,255,255,0.03); /* Soft background decoration */
+  border-radius: 50%;
+}
+.card-chip {
+  width: 36px; height: 26px; /* Card chip size */
+  background: linear-gradient(135deg, #d4a843, #f0c060); /* Gold chip effect */
+  border-radius: 4px;
+  margin-bottom: 18px; /* Space below chip */
+}
+.card-number-display {
+  font-size: 1.1rem; /* Main card number size */
+  font-weight: 600;
+  letter-spacing: 3px; /* Mimics real card number spacing */
+  margin-bottom: 16px;
+  font-family: 'Courier New', monospace; /* Gives a card-number feel */
+  color: rgba(255,255,255,0.9);
+}
+.card-meta { display: flex; justify-content: space-between; } /* Cardholder and expiry in one row */
+.card-meta-item { font-size: 0.68rem; color: rgba(255,255,255,0.5); } /* Small meta labels */
+.card-meta-value { font-size: 0.82rem; font-weight: 600; color: #fff; margin-top: 2px; } /* Value under each label */
+
+/* Payment method tabs */
+.payment-methods {
+  display: flex; /* Payment tabs in one row */
+  gap: 10px; /* Space between methods */
+  margin-bottom: 24px; /* Space below payment method selector */
+}
+.pay-method {
+  flex: 1; /* Makes all methods equal width */
+  background: var(--dark-3); /* Default tab background */
+  border: 1.5px solid rgba(255,255,255,0.08); /* Soft tab border */
+  border-radius: var(--radius); /* Rounded method tabs */
+  padding: 12px 10px; /* Clickable tab spacing */
+  cursor: pointer; /* Shows tabs are clickable */
+  text-align: center; /* Centers tab label */
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray); /* Default muted text */
+  transition: all 0.2s; /* Smooth hover/active effect */
+  font-family: var(--font);
+}
+.pay-method:hover     { border-color: rgba(255,255,255,0.2); color: #fff; } /* Hover state */
+.pay-method.active    { border-color: var(--blue); color: #fff; background: rgba(24,91,209,0.12); } /* Selected payment method */
+
+/* ----- RIGHT PANEL – ORDER SUMMARY ----- */
+.order-summary {
+  background: var(--dark-2); /* Summary card background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft border */
+  border-radius: var(--radius-md); /* Rounded card edges */
+  overflow: hidden; /* Keeps inner content tidy */
+  position: sticky; /* Makes order summary stay visible while scrolling */
+  top: calc(var(--nav-h) + 20px); /* Sticks below the navbar */
+}
+
+.order-summary-head {
+  padding: 18px 22px; /* Header spacing */
+  border-bottom: 1px solid rgba(255,255,255,0.06); /* Divider under the heading */
+  font-size: 0.92rem;
+  font-weight: 700; /* Summary title emphasis */
+}
+
+.order-items { padding: 16px 22px; } /* Inner spacing for order items */
+
+.order-item {
+  display: flex; /* Places image, details, and price in one row */
+  gap: 12px; /* Space between order item parts */
+  padding: 10px 0; /* Vertical spacing for each item */
+  border-bottom: 1px solid rgba(255,255,255,0.04); /* Divider between products */
+  align-items: center; /* Vertically centers item content */
+}
+.order-item:last-child { border-bottom: none; } /* Removes divider from the final item */
+
+.order-item-img {
+  width: 52px; height: 52px; /* Product thumbnail size */
+  background: var(--dark-3); /* Fallback background */
+  border-radius: 4px;
+  flex-shrink: 0; /* Keeps thumbnail from shrinking */
+  display: flex; /* Centers placeholder content */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  color: var(--gray-dim);
+  text-align: center;
+  overflow: hidden; /* Keeps image corners tidy */
+}
+
+.order-item-details { flex: 1; min-width: 0; } /* Takes available space and allows ellipsis */
+.order-item-name  { font-size: 0.82rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } /* Prevents long names from breaking layout */
+.order-item-qty   { font-size: 0.72rem; color: var(--gray-dim); margin-top: 2px; } /* Quantity text */
+.order-item-price { font-size: 0.88rem; font-weight: 700; color: var(--green); flex-shrink: 0; } /* Price highlight */
+
+.order-totals {
+  padding: 16px 22px; /* Totals section spacing */
+  border-top: 1px solid rgba(255,255,255,0.06); /* Divider above totals */
+  display: flex;
+  flex-direction: column; /* Stacks subtotal, discount, total */
+  gap: 8px; /* Space between total rows */
+}
+
+.total-row {
+  display: flex; /* Label and amount on one line */
+  justify-content: space-between; /* Pushes amount to the right */
+  font-size: 0.82rem;
+  color: var(--gray); /* Default totals text color */
+}
+.total-row.discount { color: var(--green); } /* Discount row highlight */
+.total-row.grand {
+  font-size: 1rem; /* Bigger final total */
+  font-weight: 800; /* Strong emphasis */
+  color: #fff;
+  padding-top: 10px; /* Space above the final total */
+  border-top: 1px solid rgba(255,255,255,0.07); /* Divider before grand total */
+  margin-top: 4px;
+}
+
+.order-summary-foot {
+  padding: 16px 22px 22px; /* Bottom spacing under summary */
+}
+
+.btn-place-order {
+  width: 100%; /* Full-width main checkout button */
+  background: var(--green); /* Green success/confirm color */
+  color: var(--dark); /* Dark text for contrast */
+  border: none; /* Removes default button border */
+  border-radius: var(--radius);
+  padding: 15px; /* Main button spacing */
+  font-family: var(--font);
+  font-size: 0.92rem;
+  font-weight: 800; /* Strong CTA emphasis */
+  cursor: pointer; /* Shows it can be clicked */
+  transition: opacity 0.2s; /* Smooth hover effect */
+}
+.btn-place-order:hover { opacity: 0.85; } /* Hover feedback */
+
+.secure-note {
+  text-align: center; /* Centers trust/security note */
+  font-size: 0.7rem;
+  color: var(--gray-dim); /* Muted note color */
+  margin-top: 10px; /* Space below button */
+  display: flex; /* Lets icon and text align nicely */
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* Space between icon and note text */
+}
+
+/* ----- SUCCESS STATE ----- */
+.order-success {
+  text-align: center; /* Centers success content */
+  padding: 80px 40px; /* Large spacing for the success screen */
+  max-width: 500px; /* Keeps success message compact */
+  margin: 0 auto; /* Centers success block */
+}
+.success-icon {
+  width: 72px; height: 72px; /* Success icon circle size */
+  background: rgba(75,204,62,0.12); /* Soft green background */
+  border: 2px solid var(--green); /* Green success outline */
+  border-radius: 50%; /* Circular icon container */
+  display: flex; /* Centers icon inside */
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem; /* Large success icon */
+  margin: 0 auto 24px; /* Centers icon and adds spacing below */
+}
+.order-success h2 { font-size: 1.8rem; margin-bottom: 12px; } /* Main success heading */
+.order-success p  { color: var(--gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: 32px; } /* Success description */
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 900px) {
+  .checkout-page { padding: 32px 20px 60px; } /* Reduces page padding on smaller screens */
+  .checkout-grid { grid-template-columns: 1fr; } /* Stacks layout into one column */
+  .order-summary { position: static; } /* Disables sticky summary on smaller devices */
+  .form-row { grid-template-columns: 1fr; } /* Stacks form fields vertically */
+  .checkout-steps { overflow-x: auto; padding-bottom: 4px; } /* Lets steps scroll horizontally if needed */
+}
+
+/* ---- Extra classes extracted from HTML ---- */
+
+.step-connector {
+  flex: 1; /* Fills the gap between steps */
+  height: 1px; /* Thin connector line */
+  background: rgba(255,255,255,0.08); /* Soft connector color */
+  margin: 0 12px; /* Space around connector */
+}
+
+.checkout-actions {
+  display: flex; /* Places action buttons in a row */
+  margin-top: 4px; /* Small space above actions */
+  flex-wrap: wrap; /* Allows buttons to wrap */
+  gap: 10px; /* Space between actions */
+}
+.checkout-actions-right   { justify-content: flex-end; } /* Aligns actions to the right */
+.checkout-actions-between { justify-content: space-between; } /* Splits actions across the row */
+
+.success-actions {
+  display: flex; /* Success buttons in one row */
+  gap: 14px; /* Space between buttons */
+  justify-content: center; /* Centers the success actions */
+  flex-wrap: wrap; /* Wraps buttons on smaller screens */
+}
+
+.alt-pay-message {
+  background: var(--dark-3); /* Alternate payment info background */
+  border: 1px solid rgba(255,255,255,0.08); /* Soft border */
+  border-radius: var(--radius);
+  padding: 20px; /* Message box spacing */
+  font-size: 0.85rem;
+  color: var(--gray); /* Secondary message text */
+  line-height: 1.7; /* Readable paragraph spacing */
+}
+
+/* Review step */
+.review-grid {
+  display: grid; /* Review info uses a grid layout */
+  grid-template-columns: 1fr 1fr; /* Two-column review layout */
+  gap: 18px; /* Space between review blocks */
+  margin-bottom: 24px; /* Space below the review grid */
+}
+
+.review-block-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px; /* Gives that dashboard-style label look */
+  text-transform: uppercase; /* Keeps labels neat and consistent */
+  color: var(--gray-dim);
+  margin-bottom: 10px; /* Space below label */
+}
+
+.review-value-bold {
+  font-weight: 700; /* Main review value emphasis */
+  font-size: 0.9rem;
+}
+
+.review-value-gray {
+  color: var(--gray); /* Secondary review text color */
+  font-size: 0.82rem;
+  margin-top: 4px; /* Small spacing from main value */
+}
+
+.review-items-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase; /* Label above items list */
+  color: var(--gray-dim);
+  margin-bottom: 12px;
+}
+
+.review-total-row {
+  display: flex; /* Total label and amount on one row */
+  justify-content: space-between; /* Pushes final amount right */
+  margin-top: 16px; /* Space above final total */
+  padding-top: 16px; /* Inner spacing above final total */
+  border-top: 1px solid rgba(255,255,255,0.07); /* Divider before total */
+  font-size: 1rem;
+  font-weight: 800; /* Makes review total stand out */
+}
+
+.review-total-amount { color: var(--green); } /* Final total highlight */
+
+.review-item-row {
+  display: flex; /* Item name and price in one row */
+  justify-content: space-between; /* Pushes item price to the right */
+  padding: 8px 0; /* Space between review rows */
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Divider between reviewed items */
+  font-size: 0.82rem;
+}
+
+.review-item-price { color: var(--green); } /* Review item price highlight */
+
+@media (max-width: 600px) {
+  .review-grid { grid-template-columns: 1fr; } /* Stacks review blocks on smaller screens */
+}

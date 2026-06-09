@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop – SHOPIFY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/Main.css"/>
+  <link rel="stylesheet" href="css/NavBar.css"/>
+    <link rel="stylesheet" href="css/Cart.css"/>
+  <link rel="stylesheet" href="css/Products.css"/>
+  <link rel="stylesheet" href="css/Profile.css"/>
+  <link rel="stylesheet" href="css/Shop.css"/>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+       <div class="nav-logo-icon">
+  <img src="./assets/Logo/WEBSITE_Logo.png" alt="Logo">
+</div>
+    <span>SHOP<span class="green">IFY</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="#consoles">Consoles</a></li>
+    <li><a href="#controllers">Controllers</a></li>
+    <li><a href="#audio">Audio</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-search">
+      <input type="text" id="navSearchInput" placeholder="Search products…" autocomplete="off">
+      <button id="navSearchBtn">Search</button>
+    </div>
+    <button class="btn-cart" onclick="Cart.toggle()">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+    <button class="btn-nav-user nav-hidden" id="navUserBtn">User</button>
+    <a href="login.html"><button class="btn-ghost" id="navLoginBtn">Login</button></a>
+  </div>
+  <button class="nav-hamburger" id="navHamburger">☰</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="#consoles">Consoles</a>
+  <a href="#controllers">Controllers</a>
+  <a href="#audio">Audio</a>
+  <a href="login.html">Login</a>
+</div>
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head"><h3>Your Cart</h3><button class="cart-close" onclick="Cart.close()">×</button></div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty.</p></div>
+  <div class="cart-foot">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">RS0.00</span></div>
+    <div class="cart-discount-row" id="cartDiscountRow"></div>
+    <div class="cart-total-row"><span>Total</span><span id="cartTotal">RS0.00</span></div>
+    <button class="btn-checkout" onclick="Cart.checkout()">Checkout →</button>
+  </div>
+</div>
+<div id="toast"></div>
+
+<div class="page-wrapper">
+
+  <div class="shop-hero">
+    <div class="section-label">XYZ Master Gaming Store</div>
+    <h1>Shop All Products</h1>
+    <p>Consoles · Controllers · Audio — everything a gamer needs.</p>
+  </div>
+
+  <!-- SEARCH RESULTS — shown by JS when ?q= param exists -->
+  <section class="search-results-section js-hidden" id="searchSection">
+    <div class="section-title" id="searchResultsTitle">Search Results</div>
+    <div class="search-bar-large search-bar-wrap">
+      <input type="text" id="searchBarInput" placeholder="Search consoles, controllers, audio…">
+      <button onclick="runPageSearch()">Search</button>
+    </div>
+    <div class="search-filters">
+      <button class="filter-chip active" data-cat="all"         onclick="filterCategory(this)">All</button>
+      <button class="filter-chip"        data-cat="consoles"    onclick="filterCategory(this)">Consoles</button>
+      <button class="filter-chip"        data-cat="controllers" onclick="filterCategory(this)">Controllers</button>
+      <button class="filter-chip"        data-cat="audio"       onclick="filterCategory(this)">Audio</button>
+    </div>
+    <div class="products-grid" id="searchResultsGrid"></div>
+  </section>
+
+  <!-- CONSOLES -->
+  <section class="scroll-section fade-in" id="consoles">
+    <div class="scroll-section-header">
+      <div>
+        <div class="section-label">Browse Category</div>
+        <div class="section-title">Gaming Consoles</div>
+        <p class="section-sub">The latest platforms. Scroll to explore.</p>
+      </div>
+      <div class="scroll-arrows">
+        <button class="scroll-arrow" onclick="scrollRow('consolesRow', -1)">←</button>
+        <button class="scroll-arrow" onclick="scrollRow('consolesRow',  1)">→</button>
+      </div>
+    </div>
+    <div class="scroll-row" id="consolesRow"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTROLLERS -->
+  <section class="scroll-section fade-in" id="controllers">
+    <div class="scroll-section-header">
+      <div>
+        <div class="section-label">Browse Category</div>
+        <div class="section-title">Joysticks &amp; Decks</div>
+        <p class="section-sub">Precision built for performance.</p>
+      </div>
+      <div class="scroll-arrows">
+        <button class="scroll-arrow" onclick="scrollRow('controllersRow', -1)">←</button>
+        <button class="scroll-arrow" onclick="scrollRow('controllersRow',  1)">→</button>
+      </div>
+    </div>
+    <div class="scroll-row" id="controllersRow"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AUDIO -->
+  <section class="scroll-section fade-in" id="audio">
+    <div class="scroll-section-header">
+      <div>
+        <div class="section-label">Browse Category</div>
+        <div class="section-title">Audio Accessories</div>
+        <p class="section-sub">Immersive sound for every session.</p>
+      </div>
+      <div class="scroll-arrows">
+        <button class="scroll-arrow" onclick="scrollRow('audioRow', -1)">←</button>
+        <button class="scroll-arrow" onclick="scrollRow('audioRow',  1)">→</button>
+      </div>
+    </div>
+    <div class="scroll-row" id="audioRow"></div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <div class="footer-logo-icon">S</div>
+        <div class="footer-logo-text">SHOP<span>IFY</span></div>
+      </div>
+      <p>Your one-stop gaming destination.</p>
+      <div class="footer-address">XYZ Master · Port Louis, Mauritius</div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="#consoles">Consoles</a></li><li><a href="#controllers">Controllers</a></li><li><a href="#audio">Audio</a></li></ul></div>
+    <div class="footer-col"><h4>Account</h4><ul><li><a href="login.html">Sign In</a></li><li><a href="register.html">Register</a></li><li><a href="profile.html">My Profile</a></li></ul></div>
+    <div class="footer-col"><h4>Help</h4><ul><li>Shipping</li><li>Returns</li><li>Contact</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 SHOPIFY. All rights reserved.</p>
+    <div class="footer-payments">
+      <span class="payment-badge">VISA</span>
+      <span class="payment-badge">Mastercard</span>
+      <span class="payment-badge">PayPal</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="js/UI.js"></script>
+<script src="js/Cart.js"></script>
+<script src="js/Auth.js"></script>
+<script src="js/Products.js"></script>
+<script src="js/Shop.js"></script>
+
+</body>
+</html>

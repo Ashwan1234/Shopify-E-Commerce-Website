@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register – SHOPIFY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/Main.css"/>
+  <link rel="stylesheet" href="css/Auth.css"/>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<div class="auth-page">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <div class="auth-logo-icon">S</div>
+      <div class="auth-logo-text">SHOP<span>IFY</span></div>
+    </div>
+
+    <div class="auth-title">Create Account</div>
+    <div class="auth-subtitle">Join SHOPIFY and start gaming. Free to sign up.</div>
+
+    <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+
+      <div class="name-row">
+        <div class="form-group">
+          <label for="regFirstName">First Name</label>
+          <input type="text" id="regFirstName" placeholder="Alex" required/>
+        </div>
+        <div class="form-group">
+          <label for="regLastName">Last Name</label>
+          <input type="text" id="regLastName" placeholder="Martin" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regEmail">Email Address</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">✉</span>
+          <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email" required/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regPhone">Phone Number</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">📱</span>
+          <input type="tel" id="regPhone" placeholder="+230 5000 0000"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Password</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="regPassword" placeholder="At least 8 characters" autocomplete="new-password" required/>
+          <button type="button" class="password-toggle" id="pwToggle1" onclick="togglePassword('regPassword','pwToggle1')">Show</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regConfirm">Confirm Password</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="regConfirm" placeholder="Repeat your password" autocomplete="new-password" required/>
+          <button type="button" class="password-toggle" id="pwToggle2" onclick="togglePassword('regConfirm','pwToggle2')">Show</button>
+        </div>
+      </div>
+
+      <div class="auth-remember auth-remember-terms">
+        <input type="checkbox" id="agreeTerms">
+        <label for="agreeTerms">
+          I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-auth" id="registerBtn">Create Account →</button>
+
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+
+  </div>
+</div>
+
+
+
+<script src="js/UI.js"></script>
+<script src="js/Auth.js"></script>
+<script src="js/Register.js"></script>
+
+</body>
+</html>

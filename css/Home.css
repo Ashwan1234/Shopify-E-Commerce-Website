@@ -1,0 +1,269 @@
+/* =============================================
+   SHOPIFY – home.css
+   Styles for index.html only
+   ============================================= */
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh; /* Makes the hero section fill the full screen height */
+  padding-top: var(--nav-h); /* Leaves space for the fixed navbar */
+  display: flex; /* Uses flex layout for hero content */
+  align-items: center; /* Vertically centers hero content */
+  position: relative; /* Needed for absolutely positioned hero elements */
+  overflow: hidden; /* Hides anything spilling outside the hero */
+  background: #080f1e; /* Dark hero background */
+}
+
+.hero-bg-accent {
+  position: absolute; /* Freely positions the accent shape */
+  top: 0; right: 0;
+  width: 50%; /* Accent covers the right half */
+  height: 100%;
+  background: var(--blue); /* Brand blue accent */
+  clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%); /* Creates the angled side shape */
+  opacity: 0.07; /* Keeps the accent subtle */
+}
+
+.hero-glow {
+  position: absolute; /* Lets the glow float behind content */
+  top: 10%; left: 5%;
+  width: 500px; height: 500px; /* Glow size */
+  background: radial-gradient(circle, rgba(24,91,209,0.18) 0%, transparent 65%); /* Soft blue glow */
+  pointer-events: none; /* Prevents glow from blocking clicks */
+}
+
+.hero-content {
+  position: relative; /* Keeps text above decorative backgrounds */
+  z-index: 1; /* Places content above accent and glow */
+  padding: 80px 48px; /* Main spacing around hero text */
+  max-width: 680px; /* Prevents text from becoming too wide */
+}
+
+.hero-tag {
+  display: inline-block; /* Makes the tag fit its content */
+  background: var(--blue); /* Blue promo tag background */
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700; /* Bold promo label */
+  letter-spacing: 2.5px; /* Gives that spaced-out label look */
+  text-transform: uppercase; /* Keeps the tag clean and consistent */
+  padding: 5px 14px;
+  margin-bottom: 22px; /* Space below the tag */
+  border-radius: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem); /* Responsive heading size */
+  font-weight: 800; /* Strong headline emphasis */
+  line-height: 1.03; /* Tight heading spacing */
+  letter-spacing: -2px; /* Slightly compressed modern title look */
+  margin-bottom: 22px; /* Space below heading */
+}
+
+.hero h1 .accent { color: var(--green); } /* Highlights part of the heading */
+
+.hero-desc {
+  font-size: 0.98rem;
+  line-height: 1.8; /* Makes the paragraph easier to read */
+  color: var(--gray); /* Softer paragraph color */
+  max-width: 520px; /* Prevents very long lines */
+  margin-bottom: 40px; /* Space before the CTA buttons */
+}
+
+.hero-cta {
+  display: flex; /* Places CTA buttons in one row */
+  gap: 14px; /* Space between buttons */
+  flex-wrap: wrap; /* Lets buttons wrap on smaller screens */
+}
+
+.hero-visual {
+  position: absolute; /* Keeps the visual fixed inside the hero area */
+  right: 72px;
+  top: 50%;
+  transform: translateY(-50%); /* Centers the visual vertically */
+  z-index: 1; /* Keeps it above background effects */
+  width: 440px;
+  height: 300px; /* Hero visual box height */
+  background: var(--dark-2); /* Card-like dark background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft border */
+  border-radius: 8px;
+  display: flex; /* Centers content inside */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* Stacks content vertically */
+  gap: 10px;
+  color: var(--gray-dim);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.hero-visual-icon { font-size: 2rem; } /* Makes the hero visual icon stand out */
+
+.hero-visual-hint {
+  font-size: 0.68rem;
+  color: #444; /* Muted helper text */
+}
+
+/* ---- SECTION VIEW-ALL ROW ---- */
+.scroll-section-header-row {
+  display: flex; /* Keeps the link and arrows in one row */
+  align-items: center;
+  gap: 16px; /* Space between items */
+  flex-wrap: wrap; /* Lets items wrap on smaller screens */
+}
+
+.view-all-link {
+  color: var(--blue); /* Brand-colored link */
+  font-size: 0.82rem;
+  font-weight: 700; /* Makes the link easier to notice */
+  white-space: nowrap; /* Prevents awkward line breaks */
+  transition: color 0.2s; /* Smooth hover effect */
+}
+.view-all-link:hover { color: var(--blue-hover); } /* Hover state for the view-all link */
+
+/* ---- PROMO BANNER ---- */
+.promo-section { padding: 48px 0; } /* Vertical spacing around the promo area */
+
+.promo-banner {
+  background: var(--dark-2); /* Promo banner background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft border */
+  margin: 0 48px; /* Side spacing */
+  padding: 44px 52px; /* Inner spacing */
+  display: flex; /* Places text and image side by side */
+  align-items: center;
+  justify-content: space-between; /* Pushes content apart */
+  gap: 40px; /* Space between text and image */
+  flex-wrap: wrap; /* Lets content stack when needed */
+  border-radius: var(--radius-md); /* Rounded banner corners */
+}
+
+.promo-text h2 {
+  font-size: 1.9rem; /* Promo heading size */
+  font-weight: 800; /* Strong heading emphasis */
+  letter-spacing: -0.5px;
+  margin-bottom: 10px; /* Space below heading */
+}
+
+.promo-text h2 span { color: var(--green); } /* Highlights the offer text */
+
+.promo-text p {
+  font-size: 0.88rem;
+  color: var(--gray); /* Softer promo paragraph color */
+  max-width: 420px; /* Keeps text readable */
+  line-height: 1.75; /* Improves paragraph readability */
+  margin-bottom: 24px; /* Space before button */
+}
+
+.promo-img-placeholder {
+  width: 260px;
+  height: 180px; /* Promo image box size */
+  background: var(--dark-3); /* Placeholder background */
+  border: 1px dashed rgba(255,255,255,0.1); /* Dashed placeholder border */
+  border-radius: 6px;
+  display: flex; /* Centers placeholder content */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--gray-dim);
+  font-weight: 600;
+  text-align: center;
+  flex-shrink: 0; /* Prevents the box from shrinking weirdly */
+  flex-direction: column; /* Stacks placeholder text lines */
+  gap: 4px;
+}
+
+.promo-img-hint {
+  font-size: 0.65rem;
+  color: #444; /* Extra muted hint text */
+}
+
+/* ---- ABOUT STRIP ---- */
+.about-strip {
+  background: var(--dark-2); /* Dark background for the about section */
+  padding: 72px 48px; /* Main spacing around the section */
+}
+
+.about-grid {
+  display: grid; /* Uses grid layout for text and image */
+  grid-template-columns: 1fr 1fr; /* Two-column layout */
+  gap: 60px; /* Space between columns */
+  align-items: center; /* Vertically aligns the content */
+  max-width: 1100px; /* Prevents the section from getting too wide */
+  margin: 0 auto; /* Centers the section */
+}
+
+.about-body { display: flex; flex-direction: column; } /* Stacks about text content vertically */
+
+.about-text {
+  font-size: 0.9rem;
+  color: var(--gray); /* Main paragraph color */
+  line-height: 1.85; /* Easy-to-read spacing */
+  margin: 16px 0; /* Space above and below paragraph */
+}
+
+.about-text-last {
+  font-size: 0.9rem;
+  color: var(--gray); /* Same muted paragraph styling */
+  line-height: 1.85;
+  margin-bottom: 28px; /* Extra space before the button */
+}
+
+.about-img-placeholder {
+  height: 200px; /* About image area height */
+  background: var(--dark-3); /* Placeholder background */
+  border: 1px dashed rgba(255,255,255,0.1); /* Placeholder-style border */
+  border-radius: 6px;
+  display: flex; /* Centers content inside */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* Stacks placeholder content */
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--gray-dim);
+  text-align: center;
+}
+
+.about-img-hint {
+  font-size: 0.65rem;
+  color: #444; /* Muted helper text */
+}
+
+/* ---- VIDEO SECTION ---- */
+.video-section {
+  padding: 80px 48px; /* Main spacing around the video section */
+  text-align: center; /* Centers section content */
+}
+
+.video-section .section-sub {
+  margin: 0 auto 40px; /* Centers the subtitle and adds bottom spacing */
+}
+
+.video-frame {
+  max-width: 860px; /* Prevents the video area from getting too wide */
+  margin: 0 auto; /* Centers the video frame */
+  aspect-ratio: 16 / 9; /* Keeps a widescreen ratio */
+  background: #000; /* Black background behind the iframe */
+  border: 1px solid rgba(255,255,255,0.08); /* Soft border */
+  border-radius: 6px;
+  overflow: hidden; /* Keeps the iframe corners clipped */
+}
+
+.video-frame iframe {
+  width: 100%; /* Makes iframe fill the frame */
+  height: 100%;
+  border: none; /* Removes default iframe border */
+  display: block; /* Prevents tiny inline gaps */
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 960px) {
+  .hero-visual         { display: none; } /* Hides hero visual on smaller screens */
+  .hero-content        { padding: 64px 20px; } /* Reduces hero spacing */
+  .promo-banner        { margin: 0 20px; padding: 32px 24px; } /* Makes promo section fit smaller screens */
+  .promo-img-placeholder { display: none; } /* Hides promo image placeholder on smaller screens */
+  .about-strip         { padding: 56px 20px; } /* Reduces about section spacing */
+  .about-grid          { grid-template-columns: 1fr; } /* Stacks about section into one column */
+  .about-img-placeholder { height: 220px; } /* Adjusts image area height for smaller screens */
+  .video-section       { padding: 60px 20px; } /* Reduces video section spacing */
+}

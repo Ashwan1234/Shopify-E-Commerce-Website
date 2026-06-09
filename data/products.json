@@ -1,0 +1,169 @@
+{
+  "products": [
+    {
+      "id": "ps5",
+      "name": "PS5 Console",
+      "category": "consoles",
+      "price": 30000,
+      "stock": 8,
+      "badge": "New",
+      "img": "../assets/Consoles/PS5_Console.png",
+      "alt": "PlayStation 5 Console",
+      "desc": "Next-gen gaming with fast loading, stunning graphics, and smooth performance."
+    },
+    {
+      "id": "xbox-x",
+      "name": "Xbox Series X",
+      "category": "consoles",
+      "price": 30000,
+      "stock": 5,
+      "badge": null,
+      "img": "../assets/Consoles/Xbox_X.png",
+      "alt": "Xbox Series X Console",
+      "desc": "Powerful high-performance gaming with fast load times and impressive visuals."
+    },
+    {
+      "id": "ps-portal",
+      "name": "PS Portal Console",
+      "category": "consoles",
+      "price": 20000,
+      "stock": 12,
+      "badge": "New",
+      "img": "../assets/Consoles/PS_Portal.png",
+      "alt": "PlayStation Portal Console",
+      "desc": "Enjoy flexibility — stay connected to your favourite games on a portable device."
+    },
+    {
+      "id": "nintendo-switch",
+      "name": "Nintendo Switch",
+      "category": "consoles",
+      "price": 10000,
+      "stock": 10,
+      "badge": null,
+      "img": "../assets/Consoles/Nintendo_Switch.png",
+      "alt": "Nintendo Switch Console",
+      "desc": "Versatile gaming on TV or anywhere. Perfect for solo or multiplayer."
+    },
+    {
+      "id": "ps4",
+      "name": "PS4 Console",
+      "category": "consoles",
+      "price": 24500,
+      "stock": 3,
+      "badge": "Sale",
+      "img": "../assets/Consoles/PS4_Console.png",
+      "alt": "PlayStation 4 Console",
+      "desc": "Reliable performance, wide game library — still a great choice."
+    },
+    {
+      "id": "dualsense5",
+      "name": "DualSense 5",
+      "category": "controllers",
+      "price": 4000,
+      "stock": 59,
+      "badge": "Popular",
+      "img": "../assets/Controllers/DualSense_5.png",
+      "alt": "DualSense 5 Controller",
+      "desc": "Sleek design with responsive haptic controls for immersive PS5 gaming."
+    },
+    {
+      "id": "dualshock4",
+      "name": "DualShock 4",
+      "category": "controllers",
+      "price": 4000,
+      "stock": 15,
+      "badge": null,
+      "img": "../assets/Controllers/DualShock_4.png",
+      "alt": "DualShock 4 Controller",
+      "desc": "Comfort, style, and precision for every PS4 gaming session."
+    },
+    {
+      "id": "joy-con",
+      "name": "Nintendo Joy-Con",
+      "category": "controllers",
+      "price": 4000,
+      "stock": 18,
+      "badge": null,
+      "img": "../assets/Controllers/Nintendo_Joy-Con.png",
+      "alt": "Nintendo Joy-Con Controllers",
+      "desc": "Compact, colorful, and versatile. Essential for the Nintendo Switch."
+    },
+    {
+      "id": "xbox-ctrl",
+      "name": "Xbox X Controller",
+      "category": "controllers",
+      "price": 4000,
+      "stock": 14,
+      "badge": null,
+      "img": "../assets/Controllers/Xbox_X_Controller.png",
+      "alt": "Xbox X Controller",
+      "desc": "Ergonomic design and responsive buttons for smooth cross-title gameplay."
+    },
+    {
+      "id": "dualsense-deck",
+      "name": "DualSense Station Deck",
+      "category": "controllers",
+      "price": 4000,
+      "stock": 25,
+      "badge": null,
+      "img": "../assets/Controllers/Dual_Sense_Station_Deck.png",
+      "alt": "DualSense Station Deck",
+      "desc": "Store and charge your controllers. Practical, stylish, keeps setup organized."
+    },
+    {
+      "id": "airpods4",
+      "name": "Apple AirPods 4",
+      "category": "audio",
+      "price": 3000,
+      "stock": 9,
+      "badge": null,
+      "img": "../assets/Audio/Apple_AirPods.png",
+      "alt": "Apple AirPods 4",
+      "desc": "Clear sound and everyday wireless convenience for music, calls, and entertainment."
+    },
+    {
+      "id": "awei-hp",
+      "name": "Awei Wireless Headphone",
+      "category": "audio",
+      "price": 5000,
+      "stock": 22,
+      "badge": null,
+      "img": "../assets/Audio/Awei_Wireless.png",
+      "alt": "Awei Wireless Headphone",
+      "desc": "Comfortable wireless listening for music, videos, and calls."
+    },
+    {
+      "id": "jbl-t450",
+      "name": "JBL T450 Headphone",
+      "category": "audio",
+      "price": 9000,
+      "stock": 30,
+      "badge": null,
+      "img": "../assets/Audio/JBL_450.png",
+      "alt": "JBL T450 Headphone",
+      "desc": "Quality sound, lightweight. Ideal for music lovers on the go."
+    },
+    {
+      "id": "samsung-pro-hp",
+      "name": "Samsung Headphone Pro",
+      "category": "audio",
+      "price": 6000,
+      "stock": 11,
+      "badge": null,
+      "img": "../assets/Audio/Samsung_Headphone.png",
+      "alt": "Samsung Headphone Pro",
+      "desc": "Style, comfort, and quality sound. Music, calls, and entertainment."
+    },
+    {
+      "id": "sony-ult",
+      "name": "SONY ULT Wireless",
+      "category": "audio",
+      "price": 10000,
+      "stock": 7,
+      "badge": "Top Pick",
+      "img": "../assets/Audio/SONY_ULT.png",
+      "alt": "SONY ULT Wireless Headphone",
+      "desc": "Strong sound and wireless freedom. Immersive for gaming, music, or daily use."
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+/* =============================================
+   SHOPIFY – Auth Pages Stylesheet
+   login.html, register.html, admin.html
+   ============================================= */
+
+.auth-page {
+  min-height: 100vh; /* Makes the auth page fill the full screen height */
+  display: flex; /* Centers the auth card using flexbox */
+  align-items: center; /* Vertically centers the auth card */
+  justify-content: center; /* Horizontally centers the auth card */
+  padding: 80px 20px 40px; /* Leaves space around the card, especially below the nav */
+  background: var(--dark); /* Dark page background */
+  position: relative; /* Needed for decorative pseudo-elements */
+  overflow: hidden; /* Hides decorative accents outside the page */
+}
+
+/* Decorative background accent */
+.auth-page::before {
+  content: '';
+  position: absolute; /* Freely positions the glow effect */
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px; /* Big decorative glow size */
+  background: radial-gradient(circle, rgba(24,91,209,0.12) 0%, transparent 70%); /* Blue glow accent */
+  pointer-events: none; /* Prevents the decoration from blocking clicks */
+}
+
+.auth-page::after {
+  content: '';
+  position: absolute; /* Freely positions the second glow */
+  bottom: -150px;
+  left: -150px;
+  width: 500px;
+  height: 500px; /* Decorative glow size */
+  background: radial-gradient(circle, rgba(75,204,62,0.07) 0%, transparent 70%); /* Green glow accent */
+  pointer-events: none; /* Keeps clicks going through */
+}
+
+/* ----- AUTH CARD ----- */
+.auth-card {
+  background: var(--dark-2); /* Main auth card background */
+  border: 1px solid rgba(255,255,255,0.08); /* Soft card border */
+  border-radius: 8px; /* Rounded card corners */
+  padding: 48px 44px; /* Inner spacing inside the card */
+  width: 100%; /* Lets the card shrink on smaller screens */
+  max-width: 460px; /* Prevents the card from getting too wide */
+  position: relative; /* Needed for top accent line */
+  z-index: 1; /* Keeps card above background decorations */
+}
+
+/* Top blue accent line */
+.auth-card::before {
+  content: '';
+  position: absolute; /* Places the accent line at the top of the card */
+  top: 0; left: 0; right: 0;
+  height: 3px; /* Thin accent line */
+  background: var(--blue); /* Default accent color */
+  border-radius: 8px 8px 0 0; /* Matches top card corners */
+}
+
+.auth-card.admin-card::before {
+  background: linear-gradient(90deg, var(--blue), var(--green)); /* Fancier accent line for admin mode */
+}
+
+/* ----- LOGO / HEADER ----- */
+.auth-logo {
+  display: flex; /* Places logo icon and text side by side */
+  align-items: center; /* Vertically centers logo content */
+  gap: 10px; /* Space between icon and brand text */
+  margin-bottom: 36px; /* Space below the logo area */
+}
+
+.auth-logo-icon {
+  width: 40px;
+  height: 40px; /* Logo box size */
+  background: var(--blue); /* Brand blue background */
+  border-radius: 4px; /* Slightly rounded box */
+  display: flex; /* Centers the logo content */
+  align-items: center;
+  justify-content: center;
+  font-weight: 800; /* Strong logo character */
+  font-size: 1rem;
+  color: #fff;
+  /* PLACEHOLDER: <img src="../assets/logo.png" alt="Shopify Logo"> */
+}
+
+.auth-logo-text {
+  font-size: 1.25rem; /* Main brand text size */
+  font-weight: 800; /* Strong branding */
+  letter-spacing: -0.5px; /* Slightly tighter logo text */
+}
+.auth-logo-text span { color: var(--green); } /* Highlights part of the brand name */
+
+.auth-title {
+  font-size: 1.55rem; /* Main auth heading size */
+  font-weight: 800; /* Strong page title */
+  margin-bottom: 6px; /* Small gap below title */
+  letter-spacing: -0.5px;
+}
+
+.auth-subtitle {
+  font-size: 0.84rem;
+  color: var(--gray); /* Softer subtitle color */
+  margin-bottom: 32px; /* Space before next section */
+  line-height: 1.6; /* Makes subtitle easier to read */
+}
+
+/* ----- ROLE TOGGLE ----- */
+.role-toggle {
+  display: flex; /* Places user/admin buttons in one row */
+  background: var(--dark-3); /* Toggle container background */
+  border: 1px solid rgba(255,255,255,0.08); /* Soft border */
+  border-radius: var(--radius); /* Rounded wrapper */
+  padding: 4px; /* Small inner spacing */
+  margin-bottom: 28px; /* Space below toggle */
+  gap: 4px; /* Space between toggle buttons */
+}
+
+.role-btn {
+  flex: 1; /* Makes both buttons equal width */
+  background: transparent; /* Default transparent button */
+  border: none; /* Removes default button border */
+  color: var(--gray); /* Default muted text */
+  font-family: var(--font); /* Uses site font */
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 9px; /* Button spacing */
+  border-radius: 3px; /* Rounded button edges */
+  cursor: pointer; /* Shows it is clickable */
+  transition: all 0.2s; /* Smooth hover/active state */
+  letter-spacing: 0.3px;
+}
+
+.role-btn.active {
+  background: var(--blue); /* Active role button color */
+  color: #fff; /* Active text color */
+}
+
+/* ----- FORM ----- */
+.auth-form { width: 100%; } /* Makes the form fill the card width */
+
+.input-icon-wrap {
+  position: relative; /* Allows icon and toggle button to be positioned inside */
+}
+
+.input-icon-wrap input {
+  padding-left: 42px; /* Leaves room for the icon on the left */
+}
+
+.input-icon {
+  position: absolute; /* Places icon inside the input area */
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%); /* Perfect vertical centering */
+  color: var(--gray-dim); /* Muted icon color */
+  font-size: 0.9rem;
+  pointer-events: none; /* Prevents icon from interfering with clicks */
+}
+
+.password-toggle {
+  position: absolute; /* Places show/hide button inside the input */
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%); /* Centers the toggle vertically */
+  background: none; /* Transparent button */
+  border: none; /* Removes default border */
+  color: var(--gray-dim); /* Default muted text */
+  cursor: pointer; /* Shows it can be clicked */
+  font-size: 0.75rem;
+  font-family: var(--font);
+  font-weight: 600;
+  transition: color 0.2s; /* Smooth hover effect */
+}
+.password-toggle:hover { color: #fff; } /* Hover state for password toggle */
+
+.auth-remember {
+  display: flex; /* Checkbox and label in one row */
+  align-items: center; /* Vertically centers checkbox and text */
+  gap: 10px; /* Space between checkbox and label */
+  margin-bottom: 24px; /* Space below the remember area */
+}
+
+.auth-remember input[type="checkbox"] {
+  width: 16px;
+  height: 16px; /* Checkbox size */
+  accent-color: var(--blue); /* Native checkbox accent color */
+  cursor: pointer; /* Makes the checkbox feel clickable */
+  flex-shrink: 0; /* Prevents checkbox from shrinking */
+}
+
+.auth-remember label {
+  font-size: 0.8rem;
+  color: var(--gray); /* Muted checkbox label */
+  cursor: pointer; /* Clicking label feels interactive */
+}
+
+.auth-forgot {
+  font-size: 0.8rem;
+  color: var(--blue); /* Makes forgot password link stand out */
+  cursor: pointer; /* Feels clickable */
+  transition: color 0.2s; /* Smooth hover effect */
+  margin-left: auto; /* Pushes it to the far right */
+}
+.auth-forgot:hover { color: var(--blue-hover); } /* Hover state for forgot link */
+
+.btn-auth {
+  width: 100%; /* Full-width main auth button */
+  background: var(--blue); /* Default auth button color */
+  color: #fff;
+  border: none; /* Removes default button border */
+  border-radius: var(--radius); /* Rounded button corners */
+  padding: 14px; /* Main button spacing */
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 800; /* Strong CTA emphasis */
+  cursor: pointer; /* Shows it is clickable */
+  transition: background 0.2s, transform 0.15s; /* Smooth hover animation */
+  letter-spacing: 0.3px;
+  margin-bottom: 20px; /* Space below the button */
+}
+.btn-auth:hover { background: var(--blue-hover); transform: translateY(-1px); } /* Hover effect for auth button */
+
+.btn-auth.admin {
+  background: linear-gradient(135deg, var(--blue), #0e3d94); /* Different look for admin button */
+}
+
+/* ----- DIVIDER ----- */
+.auth-divider {
+  display: flex; /* Text and lines in one row */
+  align-items: center; /* Centers divider content vertically */
+  gap: 12px; /* Space between the text and lines */
+  margin-bottom: 20px; /* Space below divider */
+  color: var(--gray-dim); /* Muted divider text */
+  font-size: 0.75rem;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1; /* Makes both lines stretch evenly */
+  height: 1px; /* Thin divider line */
+  background: rgba(255,255,255,0.08); /* Soft divider color */
+}
+
+/* ----- FOOTER LINKS ----- */
+.auth-footer {
+  text-align: center; /* Centers footer text */
+  font-size: 0.82rem;
+  color: var(--gray); /* Muted footer text */
+  margin-top: 8px; /* Small space above footer */
+}
+.auth-footer a {
+  color: var(--blue); /* Link color */
+  font-weight: 600; /* Makes the link easier to spot */
+  transition: color 0.2s; /* Smooth hover effect */
+}
+.auth-footer a:hover { color: var(--blue-hover); } /* Hover state for footer link */
+
+/* ----- ADMIN BADGE ----- */
+.admin-indicator {
+  display: flex; /* Aligns icon and text nicely */
+  align-items: center; /* Vertically centers badge content */
+  gap: 8px; /* Space between badge icon and text */
+  background: rgba(24,91,209,0.12); /* Light admin badge background */
+  border: 1px solid rgba(24,91,209,0.3); /* Blue-tinted border */
+  border-radius: var(--radius); /* Rounded badge corners */
+  padding: 10px 14px; /* Inner badge spacing */
+  margin-bottom: 24px; /* Space below the badge */
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #7ab3ff; /* Soft blue admin text */
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 500px) {
+  .auth-card { padding: 36px 24px; } /* Reduces card padding on smaller screens */
+}
+
+/* ---- Extra elements extracted from HTML ---- */
+.auth-remember-row {
+  display: flex; /* Places remember and forgot sections in one row */
+  align-items: center; /* Vertically centers the row content */
+  justify-content: space-between; /* Pushes both sides apart */
+  margin-bottom: 24px; /* Space below this row */
+}
+
+.auth-demo-box {
+  margin-top: 20px; /* Space above demo credentials box */
+  background: rgba(255,255,255,0.03); /* Light tinted background */
+  border: 1px solid rgba(255,255,255,0.06); /* Soft border */
+  border-radius: var(--radius); /* Rounded corners */
+  padding: 14px 16px; /* Inner spacing */
+}
+
+.auth-demo-label {
+  font-size: 0.65rem;
+  font-weight: 700; /* Small but bold label */
+  letter-spacing: 1.5px; /* Gives it a neat label style */
+  text-transform: uppercase; /* Consistent label style */
+  color: var(--gray-dim); /* Muted label color */
+  margin-bottom: 8px; /* Space below the label */
+}
+
+.auth-demo-text {
+  font-size: 0.75rem;
+  color: var(--gray); /* Softer demo text color */
+  line-height: 1.8; /* Easier to read credentials */
+}
+
+.auth-demo-text strong { color: var(--white); } /* Highlights the credential labels */
+
+/* Register form name row */
+.name-row {
+  display: grid; /* First and last name side by side */
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 14px; /* Space between the two fields */
+}
+
+@media (max-width: 420px) {
+  .name-row { grid-template-columns: 1fr; } /* Stacks name fields on very small screens */
+}
+
+.auth-remember-terms { margin-bottom: 24px; } /* Space below terms checkbox area */

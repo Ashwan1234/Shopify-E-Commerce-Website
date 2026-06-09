@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard – SHOPIFY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/Main.css"/>
+  <link rel="stylesheet" href="css/NavBar.css"/>
+  <link rel="stylesheet" href="css/Admin.css"/>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+       <div class="nav-logo-icon">
+  <img src="./assets/Logo/WEBSITE_Logo.png" alt="Logo">
+</div>
+    <span>SHOP<span class="green">IFY</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">← Storefront</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="admin-nav-badge">🛡 Admin Panel</span>
+    <button class="btn-ghost" onclick="Auth.logout()">Sign Out</button>
+  </div>
+  <button class="nav-hamburger" id="navHamburger">☰</button>
+</nav>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-link active" onclick="showPanel('dashboard',this)">
+        <span class="sidebar-icon">📊</span> Dashboard
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Manage</div>
+      <a class="sidebar-link" onclick="showPanel('users',this)">
+        <span class="sidebar-icon">👥</span> Users
+        <span class="sidebar-badge" id="usersBadge">0</span>
+      </a>
+      <a class="sidebar-link" onclick="showPanel('stock',this)">
+        <span class="sidebar-icon">📦</span> Stock / Products
+      </a>
+      <a class="sidebar-link" onclick="showPanel('orders',this)">
+        <span class="sidebar-icon">🛒</span> Orders
+        <span class="sidebar-badge" id="ordersBadge">0</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Settings</div>
+      <a class="sidebar-link" href="index.html">
+        <span class="sidebar-icon">🏪</span> View Storefront
+      </a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="sidebarAvatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebarName">Admin</div>
+          <div class="sidebar-user-role">Administrator</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+
+    <!-- DASHBOARD -->
+    <div id="panel-dashboard" class="admin-panel">
+      <div class="admin-page-title">Dashboard</div>
+      <div class="admin-page-sub">Welcome back. Here's what's happening at SHOPIFY today.</div>
+      <div class="stats-grid">
+        <div class="stat-card blue"><div class="stat-label">Total Revenue</div><div class="stat-value" id="statRevenue">$0</div><div class="stat-change">All time orders</div></div>
+        <div class="stat-card green"><div class="stat-label">Registered Users</div><div class="stat-value" id="statUsers">0</div><div class="stat-change">Active accounts</div></div>
+        <div class="stat-card gray"><div class="stat-label">Total Orders</div><div class="stat-value" id="statOrders">0</div><div class="stat-change">All time</div></div>
+        <div class="stat-card red"><div class="stat-label">Low Stock Items</div><div class="stat-value" id="statLowStock">0</div><div class="stat-change">≤ 5 units remaining</div></div>
+      </div>
+      <div class="admin-table-wrap">
+        <div class="table-head"><h3>Recent Orders</h3></div>
+        <table class="data-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th></tr></thead><tbody id="recentOrdersBody"></tbody></table>
+      </div>
+      <div class="admin-table-wrap">
+        <div class="table-head"><h3>Low Stock Alert</h3></div>
+        <table class="data-table"><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th></tr></thead><tbody id="lowStockBody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- USERS -->
+    <div id="panel-users" class="admin-panel js-hidden">
+      <div class="admin-page-title">Users</div>
+      <div class="admin-page-sub">Manage registered user accounts.</div>
+      <div class="admin-table-wrap">
+        <div class="table-head">
+          <h3>All Users</h3>
+          <div class="table-actions">
+            <input type="text" class="table-search" id="usersSearch" placeholder="Search users…" oninput="filterUsersTable(this.value)">
+          </div>
+        </div>
+        <table class="data-table"><thead><tr><th>Name</th><th>Email</th><th>Orders / Discount</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead><tbody id="usersTableBody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- STOCK -->
+    <div id="panel-stock" class="admin-panel js-hidden">
+      <div class="admin-page-title">Stock &amp; Products</div>
+      <div class="admin-page-sub">Monitor and update inventory levels and pricing.</div>
+      <div class="admin-table-wrap">
+        <div class="table-head">
+          <h3>All Products</h3>
+          <div class="table-actions">
+            <input type="text" class="table-search" id="stockSearch" placeholder="Search products…" oninput="filterStockTable(this.value)">
+          </div>
+        </div>
+        <table class="data-table"><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock Level</th><th>Action</th></tr></thead><tbody id="stockTableBody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div id="panel-orders" class="admin-panel js-hidden">
+      <div class="admin-page-title">Orders</div>
+      <div class="admin-page-sub">View and manage all customer orders.</div>
+      <div class="admin-table-wrap">
+        <div class="table-head">
+          <h3>All Orders</h3>
+          <div class="table-actions">
+            <input type="text" class="table-search" id="ordersSearch" placeholder="Search orders…" oninput="filterOrdersTable(this.value)">
+          </div>
+        </div>
+        <table class="data-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead><tbody id="ordersTableBody"></tbody></table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL: Edit Stock -->
+<div class="modal-overlay" id="editStockModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Edit Product — <span id="editStockName"></span></h3><button class="modal-close" onclick="closeModal('editStockModal')">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="editStockProductId">
+      <div class="form-group"><label for="editStockQty">Stock Quantity</label><input type="number" id="editStockQty" min="0" max="999"/></div>
+      <div class="form-group"><label for="editStockPrice">Price ($)</label><input type="number" id="editStockPrice" min="0" step="0.01"/></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('editStockModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveEditStock()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Edit User -->
+<div class="modal-overlay" id="editUserModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Edit User</h3><button class="modal-close" onclick="closeModal('editUserModal')">×</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="editUserId">
+      <div class="form-group"><label for="editUserName">Full Name</label><input type="text" id="editUserName"/></div>
+      <div class="form-group"><label for="editUserEmail">Email</label><input type="email" id="editUserEmail"/></div>
+      <div class="form-group"><label for="editUserStatus">Status</label><select id="editUserStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('editUserModal')">Cancel</button>
+      <button class="btn-primary" onclick="saveEditUser()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Order Detail -->
+<div class="modal-overlay" id="orderDetailModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Order — <span id="orderDetailId"></span></h3><button class="modal-close" onclick="closeModal('orderDetailModal')">×</button></div>
+    <div class="modal-body" id="orderDetailBody"></div>
+    <div class="modal-footer"><button class="btn-ghost" onclick="closeModal('orderDetailModal')">Close</button></div>
+  </div>
+</div>
+
+
+<script src="js/UI.js"></script>
+<script src="js/Auth.js"></script>
+<script src="js/Products.js"></script>
+<script src="js/AdminPage.js"></script>
+
+</body>
+</html>

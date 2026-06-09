@@ -1,0 +1,228 @@
+/* =============================================
+   SHOPIFY – Navigation Stylesheet
+   ============================================= */
+
+/* ----- STICKY NAV ----- */
+nav {
+  position: fixed; /* Keeps the navbar stuck at the top */
+  top: 0; left: 0; right: 0; /* Stretches nav across the full top width */
+  z-index: 1000; /* Keeps nav above most page content */
+  height: var(--nav-h); /* Uses the shared navbar height variable */
+  background: rgba(13,13,13,0.94); /* Slightly transparent dark background */
+  backdrop-filter: blur(14px); /* Adds the glassy blur effect */
+  -webkit-backdrop-filter: blur(14px); /* Safari support for blur */
+  border-bottom: 1px solid rgba(255,255,255,0.07); /* Soft divider below nav */
+  display: flex; /* Aligns nav content in a row */
+  align-items: center; /* Vertically centers nav items */
+  justify-content: space-between; /* Pushes left and right sections apart */
+  padding: 0 48px; /* Horizontal spacing inside the nav */
+  gap: 20px; /* Space between major nav sections */
+}
+
+/* ----- LOGO ----- */
+.nav-logo {
+  display: flex; /* Places logo icon and text side by side */
+  align-items: center; /* Vertically centers logo content */
+  gap: 10px; /* Space between icon and text */
+  font-weight: 800; /* Strong brand emphasis */
+  font-size: 1.3rem; /* Main logo text size */
+  letter-spacing: -0.5px; /* Slightly tighter brand text */
+  white-space: nowrap; /* Prevents logo text from wrapping */
+  flex-shrink: 0; /* Keeps logo from shrinking */
+}
+
+.nav-logo-icon {
+  width: 36px; /* Logo box width */
+  height: 36px; /* Logo box height */
+  background: var(--white); /* Logo background color */
+  display: flex; /* Centers the logo content */
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+  border-radius: 3px; /* Slightly rounded logo box */
+}
+
+.nav-logo .green { color: var(--green); } /* Highlights part of the logo text */
+
+/* ----- LINKS ----- */
+.nav-links {
+  display: flex; /* Places nav links in a row */
+  align-items: center; /* Vertically centers links */
+  gap: 28px; /* Space between nav links */
+  font-size: 0.78rem;
+  font-weight: 600; /* Makes links easier to notice */
+  letter-spacing: 0.5px; /* Slight spacing for cleaner nav text */
+  text-transform: uppercase; /* Keeps nav links consistent */
+}
+
+.nav-links a {
+  color: var(--gray); /* Default muted link color */
+  transition: color 0.2s; /* Smooth hover effect */
+  position: relative; /* Needed for underline effect */
+  padding-bottom: 2px; /* Small spacing for underline */
+}
+
+.nav-links a::after {
+  content: ''; /* Decorative underline */
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1.5px; /* Underline starts hidden */
+  background: var(--green); /* Accent underline color */
+  transition: width 0.2s; /* Smooth underline animation */
+}
+
+.nav-links a:hover        { color: var(--white); } /* Hover text color */
+.nav-links a:hover::after { width: 100%; } /* Expands underline on hover */
+.nav-links a.active       { color: var(--white); } /* Active page link color */
+.nav-links a.active::after{ width: 100%; } /* Keeps underline visible on active page */
+
+/* ----- SEARCH ----- */
+.nav-search {
+  display: flex; /* Input and button in one row */
+  align-items: center; /* Vertically centers search content */
+  background: var(--dark-3); /* Search bar background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft border around search */
+  border-radius: var(--radius); /* Rounded search box */
+  overflow: hidden; /* Keeps input/button edges tidy */
+  flex: 1; /* Lets search grow when space is available */
+  max-width: 260px; /* Prevents search from getting too wide */
+  min-width: 140px; /* Prevents search from getting too tiny */
+}
+
+.nav-search input {
+  background: none; /* Removes default input background */
+  border: none; /* Removes default input border */
+  outline: none; /* Removes browser outline */
+  color: var(--white); /* Input text color */
+  font-family: var(--font); /* Uses site font */
+  font-size: 0.8rem;
+  padding: 8px 12px; /* Inner spacing for search input */
+  width: 100%; /* Input fills available search space */
+}
+
+.nav-search input::placeholder { color: var(--gray-dim); } /* Placeholder text color */
+
+.nav-search button {
+  background: var(--blue); /* Search button color */
+  border: none; /* Removes default button border */
+  color: var(--white);
+  padding: 8px 14px; /* Button spacing */
+  cursor: pointer; /* Shows it can be clicked */
+  font-size: 0.75rem;
+  font-family: var(--font);
+  font-weight: 700; /* Makes button label stand out */
+  white-space: nowrap; /* Prevents button text from wrapping */
+  transition: background 0.2s; /* Smooth hover effect */
+  flex-shrink: 0; /* Prevents button from shrinking */
+}
+.nav-search button:hover { background: var(--blue-hover); } /* Hover state for search button */
+
+/* ----- RIGHT SIDE ----- */
+.nav-right {
+  display: flex; /* Groups right-side controls in a row */
+  align-items: center; /* Vertically centers right-side items */
+  gap: 12px; /* Space between right-side controls */
+  flex-shrink: 0; /* Keeps this group from shrinking too much */
+}
+
+.btn-cart {
+  background: var(--green); /* Main cart button color */
+  color: var(--dark); /* Dark text for contrast */
+  border: none; /* Removes default button border */
+  border-radius: var(--radius); /* Rounded button corners */
+  padding: 8px 16px; /* Button spacing */
+  font-family: var(--font);
+  font-weight: 700; /* Strong button label */
+  font-size: 0.78rem;
+  cursor: pointer; /* Shows it is clickable */
+  display: flex; /* Aligns icon/text/count neatly */
+  align-items: center;
+  gap: 7px; /* Space between cart contents */
+  transition: opacity 0.2s; /* Smooth hover feedback */
+  white-space: nowrap; /* Prevents button text wrapping */
+}
+.btn-cart:hover { opacity: 0.85; } /* Hover effect for cart button */
+
+.cart-count {
+  background: var(--dark); /* Count badge background */
+  color: var(--green); /* Count text color */
+  border-radius: 50%; /* Makes badge circular */
+  width: 18px;
+  height: 18px; /* Badge size */
+  font-size: 0.62rem;
+  font-weight: 800; /* Makes the number easy to read */
+  display: flex; /* Centers the count text */
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevents the badge from shrinking */
+}
+
+.btn-nav-user {
+  background: var(--dark-3); /* User button background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft border */
+  color: var(--gray); /* Default muted text */
+  border-radius: var(--radius);
+  padding: 8px 14px; /* Button spacing */
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer; /* Shows it is clickable */
+  transition: color 0.2s, border-color 0.2s; /* Smooth hover effect */
+  white-space: nowrap; /* Prevents text wrapping */
+}
+.btn-nav-user:hover { color: #fff; border-color: rgba(255,255,255,0.3); } /* Hover state for user button */
+
+/* ----- MOBILE HAMBURGER ----- */
+.nav-hamburger {
+  display: none; /* Hidden on desktop by default */
+  background: none; /* Transparent button background */
+  border: 1px solid rgba(255,255,255,0.15); /* Light border */
+  border-radius: var(--radius); /* Rounded button corners */
+  color: #fff;
+  width: 36px;
+  height: 36px; /* Hamburger button size */
+  cursor: pointer; /* Shows it can be clicked */
+  font-size: 1.1rem;
+  align-items: center; /* Centers the icon */
+  justify-content: center;
+  flex-shrink: 0; /* Keeps the button size stable */
+}
+
+.mobile-menu {
+  display: none; /* Hidden until opened */
+  position: fixed; /* Stays attached below the nav */
+  top: var(--nav-h); /* Starts below the navbar */
+  left: 0; right: 0; /* Full width menu */
+  background: var(--dark-2); /* Mobile menu background */
+  border-bottom: 1px solid rgba(255,255,255,0.07); /* Divider at the bottom */
+  padding: 20px 24px; /* Inner spacing */
+  z-index: 999; /* Keeps it above page content */
+  flex-direction: column; /* Stacks menu links vertically */
+  gap: 16px; /* Space between mobile menu items */
+}
+.mobile-menu.open { display: flex; } /* Shows menu when JS adds the open class */
+
+.mobile-menu a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray); /* Default mobile link color */
+  padding: 8px 0; /* Vertical spacing for tap area */
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Divider between links */
+  transition: color 0.2s; /* Smooth hover effect */
+}
+.mobile-menu a:hover { color: #fff; } /* Hover/active color for mobile links */
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 960px) {
+  nav { padding: 0 20px; } /* Reduces nav padding on smaller screens */
+  .nav-links { display: none; } /* Hides desktop links */
+  .nav-search { max-width: 160px; } /* Shrinks search box */
+  .nav-hamburger { display: flex; } /* Shows hamburger menu */
+}
+
+@media (max-width: 600px) {
+  .nav-search { display: none; } /* Hides search bar on very small screens */
+  .btn-nav-user span { display: none; } /* Hides extra text inside user button if present */
+}

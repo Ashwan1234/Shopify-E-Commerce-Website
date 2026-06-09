@@ -1,0 +1,90 @@
+<!DOCTYPE html> <!-- HTML5 document -->
+<html lang="en">
+<head> <!-- Head section: meta, title, fonts, and CSS files -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – SHOPIFY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/Main.css"/>
+  <link rel="stylesheet" href="css/Auth.css"/>
+</head>
+<body>
+
+<div id="toast"></div> <!-- Toast container for alerts/messages -->
+
+<div class="auth-page"> <!-- Main auth page wrapper -->
+  <div class="auth-card" id="authCard"> <!-- Login card starts as from here -->
+
+    <div class="auth-logo"> <!-- Brand/logo section -->
+      <div class="auth-logo-icon">S</div>
+      <div class="auth-logo-text">SHOP<span>IFY</span></div>
+    </div>
+
+    <div class="role-toggle" id="roleToggle"> <!-- Role toggle: switch between user and admin login -->
+      <button class="role-btn active" id="roleUser"  onclick="setRole('user')">User Login</button>
+      <button class="role-btn"        id="roleAdmin" onclick="setRole('admin')">Admin Login</button>
+    </div>
+
+    <div class="admin-indicator js-hidden" id="adminIndicator"> <!-- Hidden admin notice — only shows in admin mode -->
+      🛡️ Admin access — restricted area
+    </div>
+
+    <div class="auth-title"    id="authTitle">Welcome back</div> <!-- Welcome text section -->
+    <div class="auth-subtitle" id="authSubtitle">Sign in to your account to continue.</div>
+
+    <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)"> <!-- Login form with email and password fields -->
+
+      <div class="form-group"> <!-- Email input group -->
+        <label for="loginEmail">Email Address</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">✉</span>
+          <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email" required/>
+        </div>
+      </div>
+
+      <div class="form-group"> <!-- Password input group with show/hide toggle -->
+        <label for="loginPassword">Password</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required/>
+          <button type="button" class="password-toggle" id="pwToggle" onclick="togglePassword('loginPassword','pwToggle')">Show</button>
+        </div>
+      </div>
+
+      <div class="auth-remember-row"> <!-- Remember me and forgot password options -->
+        <div class="auth-remember">
+          <input type="checkbox" id="rememberMe">
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <span class="auth-forgot">Forgot password?</span>
+      </div>
+
+      <button type="submit" class="btn-auth" id="loginBtn">Sign In →</button> <!-- Main sign-in button -->
+
+    </form>
+
+    <div class="auth-divider">or</div> <!-- Little separator, just to break things up -->
+
+    <div class="auth-footer"> <!-- Footer link for users who need to register -->
+      Don't have an account? <a href="register.html">Create one</a>
+    </div>
+
+    <div class="auth-demo-box"> <!-- Demo credentials box — super useful for testing -->
+      <div class="auth-demo-label">Demo Credentials</div>
+      <div class="auth-demo-text">
+        <strong>User:</strong> alex@shopify.mu / user1234<br>
+        <strong>Admin:</strong> admin@shopify.mu / admin1234
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<script src="js/UI.js"></script> <!-- JavaScript files for UI, auth, and login logic -->
+<script src="js/Auth.js"></script>
+<script src="js/Login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+/* =============================================
+   SHOPIFY – Products / Shop Stylesheet
+   ============================================= */
+
+/* ----- HORIZONTAL SCROLL ROW ----- */
+.scroll-section {
+  padding: 64px 48px; /* Main spacing around each product section */
+}
+
+.scroll-section-header {
+  display: flex; /* Aligns title area and arrow controls in one row */
+  justify-content: space-between; /* Pushes header content apart */
+  align-items: flex-end; /* Aligns items nicely at the bottom */
+  flex-wrap: wrap; /* Lets header wrap on smaller screens */
+  gap: 16px; /* Space between wrapped items */
+  margin-bottom: 28px; /* Space below section header */
+}
+
+.scroll-arrows {
+  display: flex; /* Places arrow buttons side by side */
+  gap: 8px; /* Space between arrows */
+}
+
+.scroll-arrow {
+  width: 36px; /* Arrow button width */
+  height: 36px; /* Arrow button height */
+  background: var(--dark-3); /* Default arrow button background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft border */
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer; /* Makes button feel clickable */
+  display: flex; /* Centers arrow icon */
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: background 0.2s, border-color 0.2s; /* Smooth hover effect */
+  flex-shrink: 0; /* Prevents button from shrinking */
+}
+.scroll-arrow:hover { background: var(--blue); border-color: var(--blue); } /* Hover highlight */
+
+.scroll-row {
+  display: flex; /* Product cards arranged in a row */
+  gap: 18px; /* Space between cards */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  padding-bottom: 12px; /* Space for scrollbar area */
+  scroll-snap-type: x mandatory; /* Makes cards snap while scrolling */
+  -webkit-overflow-scrolling: touch; /* Smoother scrolling on mobile */
+  cursor: grab; /* Gives drag-scroll feeling */
+}
+.scroll-row:active { cursor: grabbing; } /* Changes cursor while dragging */
+
+.scroll-row::-webkit-scrollbar { height: 3px; } /* Thin custom scrollbar */
+.scroll-row::-webkit-scrollbar-track { background: var(--dark-3); } /* Scrollbar track color */
+.scroll-row::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; } /* Scrollbar thumb style */
+
+/* ----- PRODUCT CARD ----- */
+.product-card {
+  flex: 0 0 256px; /* Fixed card width inside horizontal row */
+  background: var(--dark-2); /* Card background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft border around card */
+  border-radius: var(--radius-md); /* Rounded corners */
+  scroll-snap-align: start; /* Each card snaps into place */
+  transition: border-color 0.2s, transform 0.2s; /* Smooth hover animation */
+  overflow: hidden; /* Keeps content inside rounded corners */
+  position: relative; /* Helps with absolute elements like badges */
+}
+.product-card:hover {
+  border-color: var(--blue); /* Highlights card on hover */
+  transform: translateY(-5px); /* Small lift effect */
+}
+
+.product-img {
+  width: 100%;
+  height: 196px; /* Product image area height */
+  background: var(--dark-3); /* Fallback background behind images */
+  display: flex; /* Centers placeholder content */
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-dim);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-align: center;
+  position: relative; /* Needed for badges or overlays */
+  overflow: hidden; /* Keeps image zoom effect neat */
+}
+/* PLACEHOLDER: Replace .product-img inner with <img src="..." alt="..."> */
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes images fill the box nicely */
+  transition: transform 0.35s; /* Smooth image zoom on hover */
+}
+.product-card:hover .product-img img { transform: scale(1.04); } /* Slight zoom effect */
+
+.product-img-text {
+  padding: 12px; /* Inner spacing for placeholder text */
+  line-height: 1.7; /* Easier to read placeholder text */
+}
+
+.product-badge-wrap {
+  position: absolute; /* Places badges over the image */
+  top: 10px;
+  left: 10px;
+  display: flex; /* Stacks badges vertically */
+  flex-direction: column;
+  gap: 4px; /* Space between badges */
+}
+
+.product-info {
+  padding: 16px 18px 18px; /* Main spacing inside card content */
+}
+
+.product-name {
+  font-weight: 700; /* Strong product title */
+  font-size: 0.92rem;
+  margin-bottom: 6px; /* Space below product name */
+  line-height: 1.3;
+}
+
+.product-desc {
+  font-size: 0.75rem;
+  color: var(--gray); /* Secondary description color */
+  line-height: 1.65; /* Better readability */
+  margin-bottom: 14px; /* Space before footer */
+}
+
+.product-footer {
+  display: flex; /* Price and button in one row */
+  align-items: center;
+  justify-content: space-between; /* Pushes button to the right */
+  gap: 8px; /* Space between footer items */
+}
+
+.product-price {
+  font-size: 1.1rem; /* Main price size */
+  font-weight: 800; /* Makes price stand out */
+  color: var(--green); /* Green price highlight */
+}
+
+.product-stock {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--gray-dim); /* Stock text stays subtle */
+  margin-top: 2px;
+}
+
+.btn-add {
+  background: var(--blue); /* Main add-to-cart button color */
+  color: #fff;
+  border: none; /* Removes default button border */
+  border-radius: 3px;
+  padding: 9px 16px; /* Button spacing */
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 700; /* Makes button text clearer */
+  letter-spacing: 0.4px;
+  cursor: pointer; /* Shows it's clickable */
+  transition: background 0.2s; /* Smooth hover effect */
+  white-space: nowrap; /* Prevents button text wrapping */
+}
+.btn-add:hover { background: var(--blue-hover); } /* Hover state for add button */
+.btn-add:disabled {
+  background: var(--dark-4); /* Disabled button background */
+  color: var(--gray-dim); /* Muted disabled text */
+  cursor: not-allowed; /* Shows button cannot be clicked */
+}
+
+/* ----- SEARCH RESULTS PAGE ----- */
+.search-page {
+  padding: 48px 48px; /* Main spacing for search page */
+}
+
+.search-bar-large {
+  display: flex; /* Input and button in one row */
+  background: var(--dark-2); /* Search bar background */
+  border: 1px solid rgba(255,255,255,0.1); /* Light search bar outline */
+  border-radius: var(--radius-md); /* Rounded search bar corners */
+  overflow: hidden; /* Keeps input/button edges clean */
+  margin-bottom: 16px; /* Space below search bar */
+  max-width: 700px; /* Keeps bar from getting too wide */
+}
+
+.search-bar-large input {
+  flex: 1; /* Input takes remaining space */
+  background: none; /* Removes default input background */
+  border: none; /* Removes default input border */
+  outline: none; /* Removes browser outline */
+  color: #fff;
+  font-family: var(--font);
+  font-size: 1rem;
+  padding: 16px 20px; /* Comfortable input spacing */
+}
+.search-bar-large input::placeholder { color: var(--gray-dim); } /* Placeholder color */
+
+.search-bar-large button {
+  background: var(--blue); /* Search button color */
+  border: none;
+  color: #fff;
+  padding: 0 28px; /* Horizontal button spacing */
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s; /* Smooth hover effect */
+}
+.search-bar-large button:hover { background: var(--blue-hover); } /* Hover state for search button */
+
+.search-filters {
+  display: flex; /* Filter chips arranged in a row */
+  gap: 10px; /* Space between filters */
+  flex-wrap: wrap; /* Chips wrap onto new lines if needed */
+  margin-bottom: 36px; /* Space below filter area */
+}
+
+.filter-chip {
+  background: var(--dark-3); /* Default chip background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft border */
+  color: var(--gray); /* Muted text by default */
+  font-family: var(--font);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 16px; /* Chip spacing */
+  border-radius: 20px; /* Pill shape */
+  cursor: pointer; /* Chips are clickable */
+  transition: all 0.2s; /* Smooth hover and active effect */
+}
+.filter-chip:hover  { border-color: var(--blue); color: #fff; } /* Hover highlight */
+.filter-chip.active { background: var(--blue); border-color: var(--blue); color: #fff; } /* Active filter state */
+
+.products-grid {
+  display: grid; /* Grid layout for search results */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Responsive product grid */
+  gap: 20px; /* Space between grid cards */
+}
+
+.no-results {
+  color: var(--gray-dim); /* Muted message color */
+  font-size: 0.9rem;
+  padding: 48px 0; /* Gives empty state some breathing room */
+  text-align: center; /* Centers the message */
+}
+
+/* ----- FEATURES STRIP ----- */
+.features-strip {
+  background: var(--blue); /* Bright promo strip background */
+  padding: 28px 48px; /* Inner spacing */
+  display: flex; /* Feature items in a row */
+  justify-content: space-around; /* Spreads feature items out */
+  flex-wrap: wrap; /* Wraps on smaller screens */
+  gap: 20px; /* Space between items */
+}
+
+.feature-item {
+  display: flex; /* Icon and text side by side */
+  align-items: center;
+  gap: 10px; /* Space between icon and label */
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap; /* Keeps each feature on one line */
+}
+
+.feature-icon {
+  width: 32px; /* Icon box size */
+  height: 32px;
+  background: rgba(255,255,255,0.15); /* Slight transparent icon background */
+  border-radius: 3px;
+  display: flex; /* Centers icon */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0; /* Prevents icon box from shrinking */
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 900px) {
+  .scroll-section { padding: 48px 20px; } /* Reduces section padding on smaller screens */
+  .search-page    { padding: 40px 20px; } /* Reduces search page spacing */
+  .features-strip { padding: 24px 20px; } /* Reduces feature strip spacing */
+}

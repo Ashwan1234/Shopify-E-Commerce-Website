@@ -1,0 +1,209 @@
+/* =============================================
+   SHOPIFY – Cart Sidebar Stylesheet
+   ============================================= */
+
+.cart-overlay {
+  display: none; /* Hidden until the cart is opened */
+  position: fixed; /* Covers the full screen */
+  inset: 0; /* Shortcut for top, right, bottom, left = 0 */
+  background: rgba(0,0,0,0.65); /* Dark overlay behind the cart */
+  z-index: 1998; /* Sits just behind the cart sidebar */
+}
+.cart-overlay.open { display: block; } /* Shows overlay when cart is open */
+
+.cart-sidebar {
+  position: fixed; /* Keeps the cart attached to the screen */
+  top: 0; right: 0; bottom: 0; /* Pins cart to the right side */
+  width: 400px; /* Desktop cart width */
+  background: var(--dark-2); /* Cart background color */
+  border-left: 1px solid rgba(255,255,255,0.08); /* Soft divider from page */
+  z-index: 1999; /* Keeps cart above the overlay */
+  transform: translateX(100%); /* Hides cart off-screen by default */
+  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1); /* Smooth slide-in effect */
+  display: flex; /* Uses flex layout inside the cart */
+  flex-direction: column; /* Stacks header, items, and footer vertically */
+}
+.cart-sidebar.open { transform: translateX(0); } /* Slides the cart into view */
+
+/* HEAD */
+.cart-head {
+  padding: 22px 24px; /* Spacing inside cart header */
+  border-bottom: 1px solid rgba(255,255,255,0.07); /* Divider below header */
+  display: flex; /* Aligns title and close button in one row */
+  justify-content: space-between; /* Pushes title and close button apart */
+  align-items: center; /* Vertically centers header content */
+  flex-shrink: 0; /* Prevents header from shrinking */
+}
+.cart-head h3 {
+  font-size: 1rem; /* Cart title size */
+  font-weight: 700; /* Makes the title stand out */
+}
+.cart-close {
+  background: none; /* Transparent close button */
+  border: none; /* Removes default button border */
+  color: var(--white); /* Close icon color */
+  font-size: 1.5rem; /* Large close icon */
+  cursor: pointer; /* Shows it is clickable */
+  line-height: 1; /* Keeps icon vertically neat */
+  opacity: 0.6; /* Slightly faded by default */
+  transition: opacity 0.2s; /* Smooth hover effect */
+}
+.cart-close:hover { opacity: 1; } /* Full visibility on hover */
+
+/* ITEMS */
+.cart-items {
+  flex: 1; /* Takes remaining space between header and footer */
+  overflow-y: auto; /* Allows cart items to scroll */
+  padding: 16px 24px; /* Inner spacing for cart items */
+  scrollbar-width: thin; /* Slim scrollbar in supported browsers */
+  scrollbar-color: var(--dark-4) transparent; /* Custom scrollbar colors */
+}
+
+.cart-empty {
+  text-align: center; /* Centers empty-cart message */
+  color: var(--gray-dim); /* Muted empty state color */
+  font-size: 0.85rem; /* Empty message text size */
+  margin-top: 60px; /* Pushes message down a bit */
+  line-height: 1.8; /* Easier to read */
+}
+
+.cart-item {
+  display: flex; /* Aligns image and info side by side */
+  gap: 14px; /* Space between image and text */
+  margin-bottom: 16px; /* Space between cart items */
+  padding-bottom: 16px; /* Bottom spacing inside item */
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Divider between items */
+}
+
+.cart-item-img {
+  width: 68px; /* Product image width */
+  height: 68px; /* Product image height */
+  background: var(--dark-3); /* Fallback image background */
+  border: 1px solid rgba(255,255,255,0.07); /* Soft border around image */
+  flex-shrink: 0; /* Prevents image box from shrinking */
+  display: flex; /* Centers placeholder content */
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem; /* Tiny placeholder text */
+  color: var(--gray-dim); /* Muted placeholder color */
+  text-align: center;
+  border-radius: 3px; /* Slightly rounded image corners */
+  overflow: hidden; /* Keeps actual images clipped nicely */
+}
+/* PLACEHOLDER: cart item image — swapped in via JS */
+
+.cart-item-info { flex: 1; min-width: 0; } /* Lets text area grow and ellipsis work */
+
+.cart-item-name {
+  font-size: 0.84rem; /* Product name text size */
+  font-weight: 600; /* Slight emphasis */
+  margin-bottom: 4px; /* Space below name */
+  white-space: nowrap; /* Keeps name on one line */
+  overflow: hidden; /* Hides overflow text */
+  text-overflow: ellipsis; /* Adds ... if name is too long */
+}
+
+.cart-item-price {
+  font-size: 0.84rem; /* Price text size */
+  color: var(--green); /* Highlights product price */
+  font-weight: 700; /* Makes price stand out */
+  margin-bottom: 6px; /* Space below price */
+}
+
+.cart-qty-row {
+  display: flex; /* Quantity controls in one row */
+  align-items: center; /* Vertically centers controls */
+  gap: 8px; /* Space between buttons and number */
+}
+
+.cart-qty-btn {
+  background: var(--dark-3); /* Quantity button background */
+  border: 1px solid rgba(255,255,255,0.1); /* Soft border */
+  color: #fff; /* Button text color */
+  width: 24px; /* Button width */
+  height: 24px; /* Button height */
+  font-size: 0.9rem; /* Plus/minus size */
+  cursor: pointer; /* Shows button is clickable */
+  display: flex; /* Centers button content */
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px; /* Small rounded corners */
+  line-height: 1; /* Keeps symbols aligned */
+  transition: background 0.15s; /* Smooth hover effect */
+}
+.cart-qty-btn:hover { background: var(--dark-4); } /* Darker hover state */
+
+.cart-qty-num {
+  font-size: 0.8rem; /* Quantity text size */
+  font-weight: 700; /* Makes quantity easy to see */
+  min-width: 16px; /* Prevents number jumping */
+  text-align: center; /* Centers quantity value */
+}
+
+.cart-item-remove {
+  background: none; /* Transparent remove button */
+  border: none; /* Removes default button border */
+  color: var(--gray-dim); /* Default muted text */
+  cursor: pointer; /* Shows it is clickable */
+  font-size: 0.72rem; /* Small remove text */
+  font-family: var(--font); /* Uses site font */
+  padding: 0; /* No extra button spacing */
+  transition: color 0.2s; /* Smooth hover effect */
+}
+.cart-item-remove:hover { color: var(--red); } /* Turns red on hover */
+
+/* FOOT */
+.cart-foot {
+  padding: 16px 24px 24px; /* Spacing inside cart footer */
+  border-top: 1px solid rgba(255,255,255,0.07); /* Divider above footer */
+  flex-shrink: 0; /* Prevents footer from shrinking */
+}
+
+.cart-subtotal {
+  display: flex; /* Label and subtotal on one row */
+  justify-content: space-between; /* Pushes amount to the right */
+  font-size: 0.84rem; /* Subtotal text size */
+  color: var(--gray); /* Muted subtotal color */
+  margin-bottom: 6px; /* Space below subtotal */
+}
+
+.cart-discount-row {
+  display: flex; /* Label and discount on one row */
+  justify-content: space-between; /* Pushes discount amount right */
+  font-size: 0.8rem; /* Slightly smaller discount text */
+  color: var(--green); /* Green discount highlight */
+  margin-bottom: 6px; /* Space below discount row */
+  display: none; /* Hidden until a discount exists */
+}
+.cart-discount-row.visible { display: flex; } /* Shows discount row when needed */
+
+.cart-total-row {
+  display: flex; /* Label and total on one row */
+  justify-content: space-between; /* Pushes total amount right */
+  font-size: 1rem; /* Main total size */
+  font-weight: 800; /* Strong emphasis on total */
+  margin-bottom: 18px; /* Space before checkout button */
+  padding-top: 10px; /* Space above the total row */
+  border-top: 1px solid rgba(255,255,255,0.07); /* Divider above total */
+}
+
+.btn-checkout {
+  width: 100%; /* Full-width checkout button */
+  background: var(--green); /* Green checkout button */
+  color: var(--dark); /* Dark text for contrast */
+  border: none; /* Removes default border */
+  border-radius: var(--radius); /* Rounded corners */
+  padding: 14px; /* Button spacing */
+  font-family: var(--font); /* Uses site font */
+  font-size: 0.88rem; /* Button text size */
+  font-weight: 800; /* Strong CTA emphasis */
+  cursor: pointer; /* Shows it can be clicked */
+  letter-spacing: 0.3px; /* Slightly spaced button text */
+  transition: opacity 0.2s; /* Smooth hover fade */
+}
+.btn-checkout:hover { opacity: 0.85; } /* Slight fade on hover */
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  .cart-sidebar { width: 100%; } /* Makes cart full-width on very small screens */
+}
